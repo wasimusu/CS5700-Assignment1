@@ -8,11 +8,13 @@ public class Triangle {
         this.Point1 = Point1;
         this.Point2 = Point2;
         this.Point3 = Point3;
+
+        // Test for invalid triangles
+        // Check for invalid triangles
+        // Zero area triangle
+        // Single Line Triangle
     }
 
-    // Check for invalid triangles
-    // Zero area triangle
-    // Single Line Triangle
     public void move(double deltaX, double deltaY) throws ShapeException {
         Point1.move(deltaX, deltaY);
         Point2.move(deltaX, deltaY);
