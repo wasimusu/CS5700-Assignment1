@@ -1,8 +1,11 @@
 package examples.shapes;
 
+import java.awt.*;
+
 public class Rectangle {
 
-    private Point Point1, Point2, Point3, Point4;
+    protected Point Point1, Point2, Point3, Point4;
+    protected double length, breadth;
 
     // What are all the ways you can declare a rectangle
     // The points are required to be in order
@@ -11,18 +14,41 @@ public class Rectangle {
         this.Point2 = Point2;
         this.Point3 = Point3;
         this.Point4 = Point4;
+
+        // Check if the points make a valid rectangle
+        Line l1 = new Line(Point1, Point2);
+        Line l2 = new Line(Point2, Point3);
+        Line l3 = new Line(Point3, Point2);
+        Line l4 = new Line(Point4, Point1);
+        Line diagonal = new Line(Point2, Point4);
+
+        // Compute the length of sides
+        double length1 = l1.computeLength();
+        double length2 = l2.computeLength();
+        double length3 = l3.computeLength();
+        double length4 = l4.computeLength();
+        double length_diag = diagonal.computeLength();
+
+        // Determine length and breadth
+        length = Math.max(length1, length2);
+        breadth = Math.min(length1, length2);
+
+        // compare the length of opposite sides and pythagoras test
+        assert length1 == length3;
+        assert length2 == length4;
+        assert Math.sqrt(Math.pow(length1, 2) + Math.pow(length2, 2)) == length_diag;
     }
 
     public double area() throws ShapeException {
-        return 0;
+        return length * breadth;
     }
 
-    public double getHeight() throws ShapeException{
-        return 0;
+    public double getLength() throws ShapeException {
+        return length;
     }
 
-    public double getWidth() throws ShapeException{
-        return 0;
+    public double getBreadth() throws ShapeException {
+        return breadth;
     }
 
     public void move(double deltaX, double deltaY) throws ShapeException {
