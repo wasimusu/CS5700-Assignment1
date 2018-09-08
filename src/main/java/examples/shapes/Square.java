@@ -8,5 +8,4 @@ public class Square extends Rectangle {
         super(a, b, c, d);
         assert length == breadth;
     }
-
 }

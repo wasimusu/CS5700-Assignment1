@@ -9,10 +9,16 @@ public class Triangle {
         this.Point2 = Point2;
         this.Point3 = Point3;
 
-        // Test for invalid triangles
-        // Check for invalid triangles
-        // Zero area triangle
-        // Single Line Triangle
+        Line l1 = new Line(Point1, Point2);
+        Line l2 = new Line(Point2, Point3);
+        Line l3 = new Line(Point3, Point1);
+
+        double length1 = l1.computeLength();
+        double length2 = l2.computeLength();
+        double length3 = l3.computeLength();
+
+        assert length1 + length2 > length3;
+        // If the sum of two sides is equal to the third side, the area of triangle is 0
     }
 
     public void move(double deltaX, double deltaY) throws ShapeException {
@@ -32,5 +38,5 @@ public class Triangle {
         return (x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2)) / 2.0;
     }
 
-    // rotate a triangle
+    // Optional : rotate a triangle
 }
