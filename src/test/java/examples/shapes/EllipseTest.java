@@ -18,7 +18,7 @@ public class EllipseTest{
         assertEquals(1.3, myEllipse.getCenter().getX(), 0);
         assertEquals(2.6, myEllipse.getCenter().getY(), 0);
         assertEquals(2.5, myEllipse.getmajorRadius(), 0);
-        assertEquals(1.5, myEllipse.getmajorRadius(), 0);
+        assertEquals(1.5, myEllipse.getminorRadius(), 0);
     }
 
     @Test
@@ -212,7 +212,7 @@ public class EllipseTest{
         myEllipse.scale(0.2);
         assertEquals(1, myEllipse.getCenter().getX(), 0);
         assertEquals(2, myEllipse.getCenter().getY(), 0);
-        assertEquals(1, myEllipse.getmajorRadius(), 0);
+        assertEquals(1.0, myEllipse.getmajorRadius(), 0);
         assertEquals(0.6, myEllipse.getminorRadius(), 0);
 
         try {
@@ -241,10 +241,10 @@ public class EllipseTest{
     @Test
     public void testComputeArea() throws ShapeException {
         Ellipse myEllipse = new Ellipse(1, 2, 5,3);
-        assertEquals(78.53975, myEllipse.computeArea(), 0.0001);
+        assertEquals(47.1238898038, myEllipse.computeArea(), 0.0001);
 
         myEllipse = new Ellipse(1, 2, 4.234,4);
-        assertEquals(56.3185174, myEllipse.computeArea(), 0.0001);
+        assertEquals(53.2060131812, myEllipse.computeArea(), 0.0001);
 
         myEllipse = new Ellipse(1, 2, 0,0);
         assertEquals(0, myEllipse.computeArea(), 0);

@@ -2,7 +2,7 @@ package examples.shapes;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 public class TriangleTest {
 
@@ -45,6 +45,67 @@ public class TriangleTest {
 
     @Test
     public void testMove() throws ShapeException {
+        Point p1 = new Point(0, 0);
+        Point p2 = new Point(4, 0);
+        Point p3 = new Point(4, 4);
+        Point p4 = new Point(4, 0);
+
+        Triangle t1 = new Triangle(p1, p2, p3);
+        t1.move(0.5, 0.5);
+
+        assertSame(new Point(0.5, 0.5), t1.getPoint1());
+        assertSame(new Point(4.5, 0.5), t1.getPoint2());
+        assertSame(new Point(4.5, 4.5), t1.getPoint3());
+
+        Triangle t2 = new Triangle(p1, p2, p4);
+        t2.move(-0.5, -0.5);
+
+        assertSame(new Point(-0.5, -0.5), t2.getPoint1());
+        assertSame(new Point(3.5, -0.5), t2.getPoint2());
+        assertSame(new Point(3.5, -0.5), t2.getPoint3());
+
+        try {
+            t2.move(Double.POSITIVE_INFINITY, 1);
+            fail("Expected exception not thrown");
+        } catch (ShapeException e) {
+            assertEquals("Invalid delta-x value", e.getMessage());
+        }
+
+        try {
+            t2.move(Double.NEGATIVE_INFINITY, 1);
+            fail("Expected exception not thrown");
+        } catch (ShapeException e) {
+            assertEquals("Invalid delta-x value", e.getMessage());
+            // ignore
+        }
+
+        try {
+            t2.move(Double.NaN, 1);
+            fail("Expected exception not thrown");
+        } catch (ShapeException e) {
+            assertEquals("Invalid delta-x value", e.getMessage());
+        }
+
+        try {
+            t2.move(1, Double.POSITIVE_INFINITY);
+            fail("Expected exception not thrown");
+        } catch (ShapeException e) {
+            assertEquals("Invalid delta-y value", e.getMessage());
+        }
+
+        try {
+            t2.move(1, Double.NEGATIVE_INFINITY);
+            fail("Expected exception not thrown");
+        } catch (ShapeException e) {
+            assertEquals("Invalid delta-y value", e.getMessage());
+        }
+
+        try {
+            t2.move(1, Double.NaN);
+            fail("Expected exception not thrown");
+        } catch (ShapeException e) {
+            assertEquals("Invalid delta-y value", e.getMessage());
+        }
 
     }
 }

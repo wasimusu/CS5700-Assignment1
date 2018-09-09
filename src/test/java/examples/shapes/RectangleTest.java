@@ -3,6 +3,8 @@ package examples.shapes;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertSame;
+import static org.junit.Assert.fail;
 
 public class RectangleTest {
 
@@ -17,6 +19,13 @@ public class RectangleTest {
 
     @Test
     public void testInvalidConstruction() throws ShapeException {
+        try {
+            new Rectangle(null, null, null, null);
+            fail("Expected exception not thrown");
+        } catch (ShapeException e) {
+            assertEquals("Invalid vertex or vertices", e.getMessage());
+        }
+
     }
 
     @Test
@@ -26,7 +35,7 @@ public class RectangleTest {
         Point p3 = new Point(4, 4);
         Point p4 = new Point(0, 4);
         Rectangle r1 = new Rectangle(p1, p2, p3, p4);
-        assertEquals(r1.area(), 16,0);
+        assertEquals(r1.area(), 16, 0);
         assertEquals(r1.getBreadth(), 4, 0);
         assertEquals(r1.getLength(), 4, 0);
 
@@ -35,7 +44,7 @@ public class RectangleTest {
         Point p7 = new Point(-4, -8);
         Point p8 = new Point(-4, -2);
         Rectangle r2 = new Rectangle(p5, p6, p7, p8);
-        assertEquals(r2.area(), 12,0);
+        assertEquals(r2.area(), 12, 0);
         assertEquals(r2.getLength(), 6, 0);
         assertEquals(r2.getBreadth(), 2, 0);
     }
@@ -46,7 +55,6 @@ public class RectangleTest {
 
     @Test
     public void testGetBreadth() throws ShapeException {
-
     }
 
     @Test
@@ -55,7 +63,57 @@ public class RectangleTest {
         Point p6 = new Point(-2, -8);
         Point p7 = new Point(-4, -8);
         Point p8 = new Point(-4, -2);
+
         Rectangle r2 = new Rectangle(p5, p6, p7, p8);
-        r2.move(0.5,0.5);
+        r2.move(0.5, 0.5);
+        Point p55 = new Point(-1.5, -1.5);
+        assertSame(p55, r2.getPoint1());
+        assertSame(new Point(-1.5, -7.5), r2.getPoint2());
+        assertSame(new Point(-3.5, -7.5), r2.getPoint3());
+        assertSame(new Point(-3.5, -1.5), r2.getPoint4());
+
+        try {
+            r2.move(Double.POSITIVE_INFINITY, 1);
+            fail("Expected exception not thrown");
+        } catch (ShapeException e) {
+            assertEquals("Invalid delta-x value", e.getMessage());
+        }
+
+        try {
+            r2.move(Double.NEGATIVE_INFINITY, 1);
+            fail("Expected exception not thrown");
+        } catch (ShapeException e) {
+            assertEquals("Invalid delta-x value", e.getMessage());
+            // ignore
+        }
+
+        try {
+            r2.move(Double.NaN, 1);
+            fail("Expected exception not thrown");
+        } catch (ShapeException e) {
+            assertEquals("Invalid delta-x value", e.getMessage());
+        }
+
+        try {
+            r2.move(1, Double.POSITIVE_INFINITY);
+            fail("Expected exception not thrown");
+        } catch (ShapeException e) {
+            assertEquals("Invalid delta-y value", e.getMessage());
+        }
+
+        try {
+            r2.move(1, Double.NEGATIVE_INFINITY);
+            fail("Expected exception not thrown");
+        } catch (ShapeException e) {
+            assertEquals("Invalid delta-y value", e.getMessage());
+        }
+
+        try {
+            r2.move(1, Double.NaN);
+            fail("Expected exception not thrown");
+        } catch (ShapeException e) {
+            assertEquals("Invalid delta-y value", e.getMessage());
+        }
+
     }
 }

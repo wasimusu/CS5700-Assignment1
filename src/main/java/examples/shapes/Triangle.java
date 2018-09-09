@@ -28,7 +28,7 @@ public class Triangle {
     }
 
     // compute area of triangle
-    public double area() throws ShapeException {
+    public double area() {
         double x1 = Point1.getX();
         double x2 = Point2.getX();
         double x3 = Point3.getX();
@@ -37,6 +37,19 @@ public class Triangle {
         double y3 = Point3.getY();
         double area = (x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2)) / 2.0;
         return Math.abs(area);
+    }
+
+    // Returns vertices of the triangles
+    public Point getPoint1() {
+        return Point1;
+    }
+
+    public Point getPoint2() {
+        return Point2;
+    }
+
+    public Point getPoint3() {
+        return Point3;
     }
 
     // Optional : rotate a triangle

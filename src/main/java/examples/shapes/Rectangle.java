@@ -15,6 +15,10 @@ public class Rectangle {
         this.Point3 = Point3;
         this.Point4 = Point4;
 
+        if (Point1 == null || Point2 == null || Point3 == null || Point4 == null)
+            throw new ShapeException("Invalid vertex or vertices");
+
+
         // Check if the points make a valid rectangle
         Line l1 = new Line(Point1, Point2);
         Line l2 = new Line(Point2, Point3);
@@ -34,31 +38,50 @@ public class Rectangle {
         breadth = Math.min(length1, length2);
 
         // compare the length of opposite sides and pythagoras test
-        System.out.println("Length 1 : " + length1 + " \tlength3 : " +length3);
-        System.out.println("Length 2 : " + length1 + " \tlength4 : " +length3);
+        System.out.println("Length 1 : " + length1 + " \tlength3 : " + length3);
+        System.out.println("Length 2 : " + length1 + " \tlength4 : " + length3);
         assert length1 == length3;
         assert length2 == length4;
         assert Math.sqrt(Math.pow(length1, 2) + Math.pow(length2, 2)) == length_diag;
     }
 
-    public double area() throws ShapeException {
+    public double area() {
         return length * breadth;
     }
 
-    public double getLength() throws ShapeException {
+    public double getLength() {
         return length;
     }
 
-    public double getBreadth() throws ShapeException {
+    public double getBreadth() {
         return breadth;
     }
 
+    // Return the vertices of the rectangle
+    public Point getPoint1() {
+        return Point1;
+    }
+
+    public Point getPoint2() {
+        return Point2;
+    }
+
+    public Point getPoint3() {
+        return Point3;
+    }
+
+    public Point getPoint4() {
+        return Point4;
+    }
+
+    // Moves the rectangle dy deltaX, deltaY
     public void move(double deltaX, double deltaY) throws ShapeException {
-        Validator.validateDouble(deltaX, "Invalid X-position");
-        Validator.validateDouble(deltaY, "Invalid Y-position");
+        Validator.validateDouble(deltaX, "Invalid delta-x value");
+        Validator.validateDouble(deltaY, "Invalid delta-x value");
         Point1.move(deltaX, deltaY);
         Point2.move(deltaX, deltaY);
         Point3.move(deltaX, deltaY);
         Point4.move(deltaX, deltaY);
+        System.out.println("Point 1 : " + Point1.getX() + " \t" + Point1.getY());
     }
 }
