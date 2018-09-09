@@ -18,7 +18,7 @@ public class Rectangle {
         // Check if the points make a valid rectangle
         Line l1 = new Line(Point1, Point2);
         Line l2 = new Line(Point2, Point3);
-        Line l3 = new Line(Point3, Point2);
+        Line l3 = new Line(Point3, Point4);
         Line l4 = new Line(Point4, Point1);
         Line diagonal = new Line(Point2, Point4);
 
@@ -34,6 +34,8 @@ public class Rectangle {
         breadth = Math.min(length1, length2);
 
         // compare the length of opposite sides and pythagoras test
+        System.out.println("Length 1 : " + length1 + " \tlength3 : " +length3);
+        System.out.println("Length 2 : " + length1 + " \tlength4 : " +length3);
         assert length1 == length3;
         assert length2 == length4;
         assert Math.sqrt(Math.pow(length1, 2) + Math.pow(length2, 2)) == length_diag;

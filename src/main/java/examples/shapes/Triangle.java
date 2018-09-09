@@ -35,7 +35,8 @@ public class Triangle {
         double y1 = Point1.getY();
         double y2 = Point2.getY();
         double y3 = Point3.getY();
-        return (x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2)) / 2.0;
+        double area = (x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2)) / 2.0;
+        return Math.abs(area);
     }
 
     // Optional : rotate a triangle

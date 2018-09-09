@@ -1,48 +1,98 @@
 package examples.shapes;
 
-import java.awt.*;
-
+/**
+ * Ellipse
+ * <p>
+ * This class represents Ellipse objects that can be moved and scales.  Users of a Ellipse can also get its area.
+ */
+@SuppressWarnings("WeakerAccess")
 public class Ellipse {
-    private Point center;
-    private double majorRadius, minorRadius;
+    protected Point center;
+    protected double majorRadius;
+    protected double minorRadius;
 
-    public Ellipse(Point center, double majorRadius, double minorRadius) throws ShapeException {
-        // Validate
-        Validator.validateDouble(majorRadius, "Invalid value for majorRadius");
-        Validator.validateDouble(minorRadius, "Invalid value for minorRadius");
-        Validator.validatePositiveDouble(minorRadius, "Negative values not accepted for minorRadius");
-        Validator.validatePositiveDouble(majorRadius, "Negative values not accepted for majorRadius");
-
-        // Construct
-        this.center = center;
-        this.majorRadius = majorRadius;
-        this.minorRadius = minorRadius;
-    }
-
+    /**
+     * Constructor with x-y Location for center
+     *
+     * @param x           The x-location of the center of the Ellipse -- must be a valid double
+     * @param y           The y-location of the center of the Ellipse
+     * @param majorRadius The majorRadius of the Ellipse -- must be greater or equal to zero.
+     * @throws ShapeException The exception thrown if the x, y, or z are not valid
+     */
     public Ellipse(double x, double y, double majorRadius, double minorRadius) throws ShapeException {
-        // Validate
-        Validator.validateDouble(x, "Invalid position for x");
-        Validator.validateDouble(y, "Invalid position for y");
-        Validator.validateDouble(majorRadius, "Invalid value for majorRadius");
-        Validator.validateDouble(minorRadius, "Invalid value for minorRadius");
-
-        // Construct
+        Validator.validatePositiveDouble(majorRadius, "Invalid majorRadius");
+        Validator.validatePositiveDouble(minorRadius, "Invalid minorRadius");
         center = new Point(x, y);
         this.majorRadius = majorRadius;
         this.minorRadius = minorRadius;
     }
 
+    /**
+     * Constructor with a Point for center
+     *
+     * @param center      The x-location of the center of the Ellipse -- must be a valid point
+     * @param majorRadius The majorRadius of the Ellipse -- must be greater or equal to zero.
+     * @throws ShapeException The exception thrown if the x, y, or z are not valid
+     */
+    public Ellipse(Point center, double majorRadius, double minorRadius) throws ShapeException {
+        Validator.validatePositiveDouble(majorRadius, "Invalid majorRadius");
+        Validator.validatePositiveDouble(minorRadius, "Invalid minorRadius");
+        if (center == null)
+            throw new ShapeException("Invalid center point");
+
+        this.center = center;
+        this.majorRadius = majorRadius;
+        this.minorRadius = minorRadius;
+    }
+
+    /**
+     * @return The center of the Ellipse
+     */
+    public Point getCenter() {
+        return center;
+    }
+
+    /**
+     * @return The majorRadius of the Ellipse
+     */
+    public double getmajorRadius() {
+        return majorRadius;
+    }
+
+    public double getminorRadius() {
+        return minorRadius;
+    }
+
+    /**
+     * Move the Ellipse
+     *
+     * @param deltaX a delta change for the x-location of center of the Ellipse
+     * @param deltaY a delta change for the y-location of center of the Ellipse
+     * @throws ShapeException Exception thrown if either the delta x or y are not valid doubles
+     */
     public void move(double deltaX, double deltaY) throws ShapeException {
         center.move(deltaX, deltaY);
     }
 
-    public double area() throws ShapeException {
-        return Math.PI*majorRadius*minorRadius;
+    /**
+     * Scale the Ellipse
+     *
+     * @param scaleFactor a non-negative double that represents the percentage to scale the Ellipse.
+     *                    0>= and <1 to shrink.
+     *                    >1 to grow.
+     * @throws ShapeException Exception thrown if the scale factor is not valid
+     */
+    public void scale(double scaleFactor) throws ShapeException {
+        Validator.validatePositiveDouble(scaleFactor, "Invalid scale factor");
+        majorRadius *= scaleFactor;
+        minorRadius *= scaleFactor;
     }
 
-    public void rotate(double clockwiseAngle) throws ShapeException {
-        Validator.validateDouble(clockwiseAngle, "Not a valid value for rotation");
-        double angle = clockwiseAngle % 360;
+    /**
+     * @return The area of the Ellipse.
+     */
+    public double computeArea() {
+        return Math.PI * majorRadius * minorRadius;
     }
 
 }
