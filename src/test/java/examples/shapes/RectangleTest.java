@@ -12,13 +12,43 @@ public class RectangleTest {
     public void testValidConstruction() throws ShapeException {
         Point p1 = new Point(0, 0);
         Point p2 = new Point(4, 0);
-        Point p3 = new Point(4, 4);
-        Point p4 = new Point(0, 4);
+        Point p3 = new Point(4, 6);
+        Point p4 = new Point(0, 6);
         Rectangle r1 = new Rectangle(p1, p2, p3, p4);
+
+        assert p1.equalsTo(r1.getPoint1());
+        assert p2.equalsTo(r1.getPoint2());
+        assert p3.equalsTo(r1.getPoint3());
+        assert p4.equalsTo(r1.getPoint4());
+
+        assertEquals(6, r1.getLength(), 0);
+        assertEquals(4, r1.getBreadth(), 0);
+        assertEquals(24, r1.area(), 0);
+
+        Point p5 = new Point(0.4, 0);
+        Point p6 = new Point(-3.6, 0);
+        Point p7 = new Point(-3.6, -8.5);
+        Point p8 = new Point(0.4, -8.5);
+        Rectangle r2 = new Rectangle(p5, p6, p7, p8);
+
+        assert p5.equalsTo(r2.getPoint1());
+        assert p6.equalsTo(r2.getPoint2());
+        assert p7.equalsTo(r2.getPoint3());
+        assert p8.equalsTo(r2.getPoint4());
+
+        assertEquals(8.5, r2.getLength(), 0);
+        assertEquals(4, r2.getBreadth(), 0);
+        assertEquals(34, r2.area(), 0);
+
     }
 
     @Test
     public void testInvalidConstruction() throws ShapeException {
+        Point p1 = new Point(0, 0);
+        Point p2 = new Point(4, 0);
+        Point p3 = new Point(4, 4);
+        Point p4 = new Point(0, 4);
+
         try {
             new Rectangle(null, null, null, null);
             fail("Expected exception not thrown");
@@ -26,7 +56,21 @@ public class RectangleTest {
             assertEquals("Invalid vertex or vertices", e.getMessage());
         }
 
+        try {
+            new Rectangle(null, p2, p3, p4);
+            fail("Expected exception not thrown");
+        } catch (ShapeException e) {
+            assertEquals("Invalid vertex or vertices", e.getMessage());
+        }
+
+        try {
+            new Rectangle(p1, null, p3, p4);
+            fail("Expected exception not thrown");
+        } catch (ShapeException e) {
+            assertEquals("Invalid vertex or vertices", e.getMessage());
+        }
     }
+
 
     @Test
     public void testArea() throws ShapeException {

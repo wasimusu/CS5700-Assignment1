@@ -238,7 +238,6 @@ public class CircleTest {
 
         myCircle = new Circle(1, 2, 0);
         assertEquals(0, myCircle.computeArea(), 0);
-
     }
 
 }
