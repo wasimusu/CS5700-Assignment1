@@ -35,21 +35,21 @@ public class EllipseTest{
             new Ellipse( new Point(1, 2), Double.POSITIVE_INFINITY, 0);
             fail("Expected exception not thrown");
         } catch (ShapeException e) {
-            assertEquals("Invalid radius", e.getMessage());
+            assertEquals("Invalid majorRadius", e.getMessage());
         }
 
         try {
-            new Ellipse(new Point(1, 2), -10, Double.NEGATIVE_INFINITY);
+            new Ellipse(new Point(1, 2), 10, Double.NEGATIVE_INFINITY);
             fail("Expected exception not thrown");
         } catch (ShapeException e) {
-            assertEquals("Invalid radius", e.getMessage());
+            assertEquals("Invalid minorRadius", e.getMessage());
         }
 
         try {
             new Ellipse(new Point(1, 2), -1, Double.NaN);
             fail("Expected exception not thrown");
         } catch (ShapeException e) {
-            assertEquals("Invalid radius", e.getMessage());
+            assertEquals("Invalid majorRadius", e.getMessage());
         }
 
         try {
@@ -99,21 +99,21 @@ public class EllipseTest{
             new Ellipse(1, 2, Double.POSITIVE_INFINITY,10);
             fail("Expected exception not thrown");
         } catch (ShapeException e) {
-            assertEquals("Invalid radius", e.getMessage());
+            assertEquals("Invalid majorRadius", e.getMessage());
         }
 
         try {
             new Ellipse(1, 2, Double.NEGATIVE_INFINITY,-10);
             fail("Expected exception not thrown");
         } catch (ShapeException e) {
-            assertEquals("Invalid radius", e.getMessage());
+            assertEquals("Invalid majorRadius", e.getMessage());
         }
 
         try {
             new Ellipse(1, 2, Double.NaN, 0);
             fail("Expected exception not thrown");
         } catch (ShapeException e) {
-            assertEquals("Invalid radius", e.getMessage());
+            assertEquals("Invalid majorRadius", e.getMessage());
         }
 
     }
@@ -209,11 +209,13 @@ public class EllipseTest{
         assertEquals(15, myEllipse.getmajorRadius(), 0);
         assertEquals(9, myEllipse.getminorRadius(), 0);
 
-        myEllipse.scale(0.2);
-        assertEquals(1, myEllipse.getCenter().getX(), 0);
-        assertEquals(2, myEllipse.getCenter().getY(), 0);
-        assertEquals(1.0, myEllipse.getmajorRadius(), 0);
-        assertEquals(0.6, myEllipse.getminorRadius(), 0);
+        Ellipse myEllipse2 = new Ellipse(1, 2, 5,3);
+        myEllipse2.scale(0.2);
+        assertEquals(1, myEllipse2.getCenter().getX(), 0);
+        assertEquals(2, myEllipse2.getCenter().getY(), 0);
+        assertEquals(1.0, myEllipse2.getmajorRadius(), 0);
+        assertEquals(0.6, myEllipse2.getminorRadius(), 0.00000000001);
+        //System.out.println("Minor Radius : "+myEllipse2.getminorRadius()+"\tMajor Radius : "+myEllipse2.getmajorRadius());
 
         try {
             myEllipse.scale(Double.POSITIVE_INFINITY);

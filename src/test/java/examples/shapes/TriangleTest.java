@@ -48,21 +48,24 @@ public class TriangleTest {
         Point p1 = new Point(0, 0);
         Point p2 = new Point(4, 0);
         Point p3 = new Point(4, 4);
-        Point p4 = new Point(4, 0);
 
         Triangle t1 = new Triangle(p1, p2, p3);
         t1.move(0.5, 0.5);
 
-        assertSame(new Point(0.5, 0.5), t1.getPoint1());
-        assertSame(new Point(4.5, 0.5), t1.getPoint2());
-        assertSame(new Point(4.5, 4.5), t1.getPoint3());
+        assert t1.getPoint1().equalsTo(new Point(0.5, 0.5));
+        assert t1.getPoint2().equalsTo(new Point(4.5, 0.5));
+        assert t1.getPoint3().equalsTo(new Point(4.5, 4.5));
 
-        Triangle t2 = new Triangle(p1, p2, p4);
+        Point p4 = new Point(4, 0);
+        Point p5 = new Point(0, 0);
+        Point p6 = new Point(0, 4);
+
+        Triangle t2 = new Triangle(p4, p5, p6);
         t2.move(-0.5, -0.5);
 
-        assertSame(new Point(-0.5, -0.5), t2.getPoint1());
-        assertSame(new Point(3.5, -0.5), t2.getPoint2());
-        assertSame(new Point(3.5, -0.5), t2.getPoint3());
+        assert t2.getPoint1().equalsTo(new Point(3.5, -0.5));
+        assert t2.getPoint2().equalsTo(new Point(-0.5, -0.5));
+        assert t2.getPoint3().equalsTo(new Point(-0.5, 3.5));
 
         try {
             t2.move(Double.POSITIVE_INFINITY, 1);

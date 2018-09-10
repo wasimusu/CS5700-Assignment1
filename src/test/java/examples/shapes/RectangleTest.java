@@ -66,11 +66,10 @@ public class RectangleTest {
 
         Rectangle r2 = new Rectangle(p5, p6, p7, p8);
         r2.move(0.5, 0.5);
-        Point p55 = new Point(-1.5, -1.5);
-        assertSame(p55, r2.getPoint1());
-        assertSame(new Point(-1.5, -7.5), r2.getPoint2());
-        assertSame(new Point(-3.5, -7.5), r2.getPoint3());
-        assertSame(new Point(-3.5, -1.5), r2.getPoint4());
+        assert r2.getPoint1().equalsTo(new Point(-1.5, -1.5));
+        assert r2.getPoint2().equalsTo(new Point(-1.5, -7.5));
+        assert r2.getPoint3().equalsTo(new Point(-3.5, -7.5));
+        assert r2.getPoint4().equalsTo(new Point(-3.5, -1.5));
 
         try {
             r2.move(Double.POSITIVE_INFINITY, 1);

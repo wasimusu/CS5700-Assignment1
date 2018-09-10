@@ -77,7 +77,7 @@ public class Rectangle {
     // Moves the rectangle dy deltaX, deltaY
     public void move(double deltaX, double deltaY) throws ShapeException {
         Validator.validateDouble(deltaX, "Invalid delta-x value");
-        Validator.validateDouble(deltaY, "Invalid delta-x value");
+        Validator.validateDouble(deltaY, "Invalid delta-y value");
         Point1.move(deltaX, deltaY);
         Point2.move(deltaX, deltaY);
         Point3.move(deltaX, deltaY);

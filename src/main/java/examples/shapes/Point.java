@@ -38,6 +38,10 @@ public class Point {
         return y;
     }
 
+    public Boolean equalsTo(Point p){
+        return y == p.getY() && x == p.getX();
+    }
+
     /**
      * Move the point in the x direction
      *
