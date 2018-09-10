@@ -91,7 +91,7 @@ public class Ellipse {
     /**
      * @return The area of the Ellipse.
      */
-    public double computeArea() {
+    public double area() {
         return Math.PI * majorRadius * minorRadius;
     }
 

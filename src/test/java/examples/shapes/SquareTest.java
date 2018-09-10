@@ -43,9 +43,16 @@ public class SquareTest {
     @Test
     public void testInvalidConstruction() throws ShapeException {
         Point p1 = new Point(0, 0);
-        Point p2 = new Point(4, 0);
-        Point p3 = new Point(4, 4);
+        Point p2 = new Point(8, 0);
+        Point p3 = new Point(8, 4);
         Point p4 = new Point(0, 4);
+
+        try {
+            Square s1 = new Square(p1, p2, p3, p4);
+            fail("Expected exception not thrown");
+        } catch (ShapeException e) {
+            assertEquals("All sides are not equal", e.getMessage());
+        }
 
         try {
             new Square(null, null, null, null);

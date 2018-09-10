@@ -6,6 +6,7 @@ public class Square extends Rectangle {
 
     public Square(Point a, Point b, Point c, Point d) throws ShapeException {
         super(a, b, c, d);
-        assert length == breadth;
+        if (length != breadth)
+            throw new ShapeException("All sides are not equal");
     }
 }

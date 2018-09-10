@@ -38,8 +38,6 @@ public class Rectangle {
         breadth = Math.min(length1, length2);
 
         // compare the length of opposite sides and pythagoras test
-        System.out.println("Length 1 : " + length1 + " \tlength3 : " + length3);
-        System.out.println("Length 2 : " + length1 + " \tlength4 : " + length3);
         assert length1 == length3;
         assert length2 == length4;
         assert Math.sqrt(Math.pow(length1, 2) + Math.pow(length2, 2)) == length_diag;
@@ -76,12 +74,9 @@ public class Rectangle {
 
     // Moves the rectangle dy deltaX, deltaY
     public void move(double deltaX, double deltaY) throws ShapeException {
-        Validator.validateDouble(deltaX, "Invalid delta-x value");
-        Validator.validateDouble(deltaY, "Invalid delta-y value");
         Point1.move(deltaX, deltaY);
         Point2.move(deltaX, deltaY);
         Point3.move(deltaX, deltaY);
         Point4.move(deltaX, deltaY);
-        System.out.println("Point 1 : " + Point1.getX() + " \t" + Point1.getY());
     }
 }

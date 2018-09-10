@@ -16,8 +16,8 @@ public class TriangleTest {
         Triangle t1 = new Triangle(p1, p2, p3);
         Triangle t2 = new Triangle(p1, p2, p4);
 
-        assertEquals(t1.area(), 8, 0);
-        assertEquals(t2.area(), 8, 0);
+        assertEquals(t1.area(), 8, 0.0000001);
+        assertEquals(t2.area(), 8, 0.0000001);
 
         Point p5 = new Point(-2, -2);
         Point p6 = new Point(-2, -8);
@@ -29,8 +29,8 @@ public class TriangleTest {
 
         System.out.println("Area : " + t3.area());
         System.out.println("Area : " + t4.area());
-        assertEquals(t3.area(), 6, 0);
-        assertEquals(t4.area(), 6, 0);
+        assertEquals(t3.area(), 6, 0.00000001);
+        assertEquals(t4.area(), 6, 0.00000001);
     }
 
     @Test
