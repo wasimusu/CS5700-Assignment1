@@ -45,6 +45,12 @@ public class Ellipse {
         this.minorRadius = minorRadius;
     }
 
+    public Ellipse() throws ShapeException {
+        this.center = new Point(0, 0);
+        this.majorRadius = 0;
+        this.minorRadius = 0;
+    }
+
     /**
      * @return The center of the Ellipse
      */

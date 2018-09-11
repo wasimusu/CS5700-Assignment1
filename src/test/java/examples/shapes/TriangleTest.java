@@ -34,12 +34,12 @@ public class TriangleTest {
     }
 
     @Test
-    public void testInvalidConstruction() throws ShapeException {
+    public void testInvalidConstruction() {
 
     }
 
     @Test
-    public void testArea() throws ShapeException {
+    public void testArea() {
 
     }
 

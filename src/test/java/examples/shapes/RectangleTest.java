@@ -94,11 +94,11 @@ public class RectangleTest {
     }
 
     @Test
-    public void testGetLength() throws ShapeException {
+    public void testGetLength() {
     }
 
     @Test
-    public void testGetBreadth() throws ShapeException {
+    public void testGetBreadth() {
     }
 
     @Test
