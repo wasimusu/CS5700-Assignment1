@@ -47,6 +47,7 @@ public class SquareTest {
         Point p3 = new Point(8, 4);
         Point p4 = new Point(0, 4);
 
+        // Testing if Square accepts rectangles
         try {
             Square s1 = new Square(p1, p2, p3, p4);
             fail("Expected exception not thrown");
@@ -54,6 +55,16 @@ public class SquareTest {
             assertEquals("All sides are not equal", e.getMessage());
         }
 
+        // Testing lines with zero length in a square
+        Point zero = new Point(0, 0);
+        try {
+            Square s1 = new Square(zero, zero, zero, zero);
+            fail("Expected exception not thrown");
+        } catch (ShapeException e) {
+            assertEquals("A line must have a length > 0", e.getMessage());
+        }
+
+        // Testing null points as vertices
         try {
             new Square(null, null, null, null);
             fail("Expected exception not thrown");

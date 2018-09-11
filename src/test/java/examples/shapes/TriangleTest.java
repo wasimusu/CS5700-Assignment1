@@ -27,19 +27,29 @@ public class TriangleTest {
         Triangle t3 = new Triangle(p5, p6, p7);
         Triangle t4 = new Triangle(p5, p6, p8);
 
-        System.out.println("Area : " + t3.area());
-        System.out.println("Area : " + t4.area());
         assertEquals(t3.area(), 6, 0.00000001);
         assertEquals(t4.area(), 6, 0.00000001);
     }
 
     @Test
-    public void testInvalidConstruction() {
+    public void testInvalidConstruction() throws ShapeException {
+        Point p1 = new Point(0, 0);
+        Point p2 = new Point(4, 0);
+        Point p3 = new Point(4, 4);
 
-    }
+        try {
+            new Triangle(null, p2, p3);
+            fail("Expected exception not thrown");
+        } catch (ShapeException e) {
+            assertEquals("Invalid vertex", e.getMessage());
+        }
 
-    @Test
-    public void testArea() {
+        try {
+            new Triangle(p1, p1, p3);
+            fail("Expected exception not thrown");
+        } catch (ShapeException e) {
+            assertEquals("A line must have a length > 0", e.getMessage());
+        }
 
     }
 

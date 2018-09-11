@@ -8,11 +8,11 @@ public class PointTest {
 
     @Test
     public void testValidConstruction() throws Exception {
-        Point p1 = new Point(1,2);
+        Point p1 = new Point(1, 2);
         assertEquals(1, p1.getX(), 0);
         assertEquals(2, p1.getY(), 0);
 
-        p1 = new Point(1.111,2.222);
+        p1 = new Point(1.111, 2.222);
         assertEquals(1.111, p1.getX(), 0);
         assertEquals(2.222, p1.getY(), 0);
     }
@@ -35,7 +35,7 @@ public class PointTest {
         }
 
         try {
-            new Point(1,Double.NaN);
+            new Point(1, Double.NaN);
             fail("Expected exception not thrown");
         } catch (Exception e) {
             assertEquals("Invalid y-location", e.getMessage());
@@ -66,7 +66,7 @@ public class PointTest {
 
     @Test
     public void testMoveX() throws Exception {
-        Point p1 = new Point(1,2);
+        Point p1 = new Point(1, 2);
 
         p1.move(10, 0);
         assertEquals(11, p1.getX(), 0);
@@ -109,7 +109,7 @@ public class PointTest {
 
     @Test
     public void testMoveY() throws Exception {
-        Point p1 = new Point(1,2);
+        Point p1 = new Point(1, 2);
 
         p1.move(0, 10);
         assertEquals(1, p1.getX(), 0);
@@ -152,7 +152,7 @@ public class PointTest {
 
     @Test
     public void testMove() throws Exception {
-        Point p1 = new Point(1,2);
+        Point p1 = new Point(1, 2);
 
         p1.move(10, 20);
         assertEquals(11, p1.getX(), 0);
@@ -199,14 +199,14 @@ public class PointTest {
         }
 
         try {
-            p1.move(Double.NEGATIVE_INFINITY,1 );
+            p1.move(Double.NEGATIVE_INFINITY, 1);
             fail("Expected exception not thrown");
         } catch (Exception e) {
             assertEquals("Invalid delta-x value", e.getMessage());
         }
 
         try {
-            p1.move(Double.NaN,1);
+            p1.move(Double.NaN, 1);
             fail("Expected exception not thrown");
         } catch (Exception e) {
             assertEquals("Invalid delta-x value", e.getMessage());
@@ -215,8 +215,8 @@ public class PointTest {
     }
 
     @Test
-    public void testClone() throws Exception {
-        Point p1 = new Point(-123.45,-23.45);
+    public void testClone() throws ShapeException {
+        Point p1 = new Point(-123.45, -23.45);
         assertEquals(-123.45, p1.getX(), 0);
         assertEquals(-23.45, p1.getY(), 0);
 
@@ -224,5 +224,22 @@ public class PointTest {
         assertNotSame(p1, p2);
         assertEquals(p1.getX(), p2.getX(), 0);
         assertEquals(p1.getY(), p2.getY(), 0);
+    }
+
+    @Test
+    public void testEqualsTo() throws ShapeException {
+        Point p1 = new Point(-123.45, -23.45);
+        Point p2 = p1.copy();
+        assert p1.equalsTo(p2);
+
+        Point p3 = new Point(0.5, -23.45);
+        Point p4 = new Point(0.5, -23.45);
+        assert p3.equalsTo(p4);
+
+        p4.move(0.4, 0);
+        assert !p3.equalsTo(p4);
+
+        p1.move(0.2, 0.1);
+        assert !p1.equalsTo(p2);
     }
 }

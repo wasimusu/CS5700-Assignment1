@@ -18,7 +18,6 @@ public class Rectangle {
         if (Point1 == null || Point2 == null || Point3 == null || Point4 == null)
             throw new ShapeException("Invalid vertex or vertices");
 
-
         // Check if the points make a valid rectangle
         Line l1 = new Line(Point1, Point2);
         Line l2 = new Line(Point2, Point3);

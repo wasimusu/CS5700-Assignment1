@@ -5,6 +5,9 @@ public class Triangle {
 
     // constructor for declaring triangle using three Points
     public Triangle(Point Point1, Point Point2, Point Point3) throws ShapeException {
+        if (Point1 == null || Point2 == null || Point3 == null)
+            throw new ShapeException("Invalid vertex");
+
         this.Point1 = Point1;
         this.Point2 = Point2;
         this.Point3 = Point3;
