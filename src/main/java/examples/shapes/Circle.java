@@ -2,7 +2,7 @@ package examples.shapes;
 
 import java.awt.*;
 
-public class Circle extends Ellipse {
+public class Circle extends Ellipse{
 
     public Circle(Point center, double radius) throws ShapeException {
         Validator.validatePositiveDouble(radius, "Invalid radius");

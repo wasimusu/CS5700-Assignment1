@@ -6,7 +6,7 @@ package examples.shapes;
  * This class represents Ellipse objects that can be moved and scales.  Users of a Ellipse can also get its area.
  */
 @SuppressWarnings("WeakerAccess")
-public class Ellipse {
+public class Ellipse implements Shapes {
     protected Point center;
     protected double majorRadius;
     protected double minorRadius;
@@ -29,7 +29,6 @@ public class Ellipse {
 
     /**
      * Constructor with a Point for center
-     *
      * @param center      The x-location of the center of the Ellipse -- must be a valid point
      * @param majorRadius The majorRadius of the Ellipse -- must be greater or equal to zero.
      * @throws ShapeException The exception thrown if the x, y, or z are not valid

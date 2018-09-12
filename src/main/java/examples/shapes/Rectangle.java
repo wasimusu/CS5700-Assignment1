@@ -2,7 +2,7 @@ package examples.shapes;
 
 import java.awt.*;
 
-public class Rectangle {
+public class Rectangle implements Shapes {
 
     protected Point Point1, Point2, Point3, Point4;
     protected double length, breadth;

@@ -1,6 +1,6 @@
 package examples.shapes;
 
-public class Triangle {
+public class Triangle implements Shapes{
     private Point Point1, Point2, Point3;
 
     // constructor for declaring triangle using three Points
