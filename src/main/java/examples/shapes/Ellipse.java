@@ -46,8 +46,8 @@ public class Ellipse implements Shapes {
 
     public Ellipse() throws ShapeException {
         this.center = new Point(0, 0);
-        this.majorRadius = 0;
-        this.minorRadius = 0;
+        this.majorRadius = 1;
+        this.minorRadius = 1;
     }
 
     /**
