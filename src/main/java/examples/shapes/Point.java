@@ -1,12 +1,14 @@
 package examples.shapes;
 
+import java.io.Serializable;
+
 /**
  * Point
  * <p>
  * This class represents point objects that can be moved and copied
  */
 @SuppressWarnings("WeakerAccess")
-public class Point {
+public class Point implements Serializable {
     private double x;
     private double y;
 
