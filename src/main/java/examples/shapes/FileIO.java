@@ -1,10 +1,8 @@
 package examples.shapes;
 
+// Implement a serializer and deserializer
 // reads composite shapes
 // saves composite shapes
-
-// Java Program to illustrate reading from FileReader
-// using BufferedReader
 
 import java.io.*;
 
@@ -17,12 +15,11 @@ public class FileIO {
         // buffer for file reader
         BufferedReader br = new BufferedReader(new FileReader(file));
 
-        String st;
+        String line;
         String shape ="";
         // Split by line and then split by space
-        while ((st = br.readLine()) != null)
-            shape = shape.concat(st);
-            System.out.println(st);
+        while ((line = br.readLine()) != null)
+            shape = shape.concat(line);
 
         // Parse the input
         return shape;
