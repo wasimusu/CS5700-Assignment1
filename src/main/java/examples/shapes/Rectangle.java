@@ -1,7 +1,5 @@
 package examples.shapes;
 
-import java.awt.*;
-
 public class Rectangle implements Shapes {
 
     protected Point Point1, Point2, Point3, Point4;
@@ -78,4 +76,28 @@ public class Rectangle implements Shapes {
         Point3.move(deltaX, deltaY);
         Point4.move(deltaX, deltaY);
     }
+
+    @Override
+    public String toString() {
+        return "Rectangle:" +
+                String.valueOf(this.getPoint1().getX()) + "," +
+                String.valueOf(this.getPoint1().getY()) + "," +
+                String.valueOf(this.getPoint2().getX()) + "," +
+                String.valueOf(this.getPoint2().getY()) + "," +
+                String.valueOf(this.getPoint3().getX()) + "," +
+                String.valueOf(this.getPoint3().getY()) + "," +
+                String.valueOf(this.getPoint4().getX()) + "," +
+                String.valueOf(this.getPoint4().getY());
+    }
+
+    public Rectangle(String string) throws ShapeException{
+        // Expecting only parameters
+        // x, y, majorRadius, minorRadius
+        String[] strings = string.split(",");
+        this.Point1 = new Point(Double.valueOf(strings[0]), Double.valueOf(strings[1]));
+        this.Point2 = new Point(Double.valueOf(strings[2]), Double.valueOf(strings[3]));
+        this.Point3 = new Point(Double.valueOf(strings[4]), Double.valueOf(strings[5]));
+        this.Point4 = new Point(Double.valueOf(strings[6]), Double.valueOf(strings[7]));
+    }
+
 }

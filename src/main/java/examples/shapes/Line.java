@@ -10,8 +10,8 @@ package examples.shapes;
 @SuppressWarnings("WeakerAccess")
 public class Line {
 
-    private Point point1;
-    private Point point2;
+    private Point Point1;
+    private Point Point2;
 
     /**
      * Constructor based on x-y Locations
@@ -22,8 +22,8 @@ public class Line {
      * @throws ShapeException   Exception throw if any parameter is invalid
      */
     public Line(double x1, double y1, double x2, double y2) throws ShapeException {
-        point1 = new Point(x1, y1);
-        point2 = new Point(x2, y2);
+        Point1 = new Point(x1, y1);
+        Point2 = new Point(x2, y2);
 
         if (computeLength() < 0.00000001)
             throw new ShapeException("A line must have a length > 0");
@@ -31,16 +31,16 @@ public class Line {
 
     /**
      *
-     * @param point1            The first point -- must not be null
-     * @param point2            The second point -- must not b e null
+     * @param Point1            The first point -- must not be null
+     * @param Point2            The second point -- must not b e null
      * @throws ShapeException   Exception throw if any parameter is invalid
      */
-    public Line(Point point1, Point point2) throws ShapeException {
-        if (point1==null || point2==null)
+    public Line(Point Point1, Point Point2) throws ShapeException {
+        if (Point1==null || Point2==null)
             throw new ShapeException("Invalid Point");
 
-        this.point1 = point1;
-        this.point2 = point2;
+        this.Point1 = Point1;
+        this.Point2 = Point2;
 
         if (computeLength() < 0.00000001)
             throw new ShapeException("A line must have a length > 0");
@@ -49,12 +49,12 @@ public class Line {
     /**
      * @return  The first point
      */
-    public Point getPoint1() { return point1; }
+    public Point getPoint1() { return Point1; }
 
     /**
      * @return  The second point
      */
-    public Point getPoint2() { return point2; }
+    public Point getPoint2() { return Point2; }
 
     /**
      * Move a line
@@ -64,23 +64,39 @@ public class Line {
      * @throws ShapeException   Exception throw if any parameter is invalid
      */
     public void move(double deltaX, double deltaY) throws ShapeException {
-        point1.move(deltaX, deltaY);
-        point2.move(deltaX, deltaY);
+        Point1.move(deltaX, deltaY);
+        Point2.move(deltaX, deltaY);
     }
 
     /**
      * @return  The length of the line
      */
     public double computeLength() {
-        return Math.sqrt(Math.pow(point2.getX() - point1.getX(), 2) +
-                         Math.pow(point2.getY() - point1.getY(), 2));
+        return Math.sqrt(Math.pow(Point2.getX() - Point1.getX(), 2) +
+                         Math.pow(Point2.getY() - Point1.getY(), 2));
     }
 
     /**
      * @return  The slope of the line
      */
     public double computeSlope() {
-        return (point2.getY() - point1.getY())/(point2.getX() - point1.getX());
+        return (Point2.getY() - Point1.getY())/(Point2.getX() - Point1.getX());
     }
 
+    @Override
+    public String toString() {
+        return "Line:" +
+                String.valueOf(this.getPoint1().getX()) + "," +
+                String.valueOf(this.getPoint1().getY()) + "," +
+                String.valueOf(this.getPoint2().getX()) + "," +
+                String.valueOf(this.getPoint2().getY());
+    }
+
+    public Line(String string) throws ShapeException{
+        // Expecting only parameters
+        // x, y, majorRadius, minorRadius
+        String[] strings = string.split(",");
+        this.Point1 = new Point(Double.valueOf(strings[0]), Double.valueOf(strings[1]));
+        this.Point2 = new Point(Double.valueOf(strings[2]), Double.valueOf(strings[3]));
+    }
 }

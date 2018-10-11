@@ -1,8 +1,6 @@
 package examples.shapes;
 
-import java.awt.*;
-
-public class Circle extends Ellipse{
+public class Circle extends Ellipse {
 
     public Circle(Point center, double radius) throws ShapeException {
         Validator.validatePositiveDouble(radius, "Invalid radius");
@@ -21,7 +19,9 @@ public class Circle extends Ellipse{
         this.center = new Point(x, y);
     }
 
-    public double getRadius() throws ShapeException {
+    public double getRadius(){
         return super.getmajorRadius();
     }
+
+
 }
