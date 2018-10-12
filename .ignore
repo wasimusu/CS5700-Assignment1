@@ -11,3 +11,6 @@ gradle
 *.class
 gradlew
 settings.gradle
+
+*.xml
+*.iml
