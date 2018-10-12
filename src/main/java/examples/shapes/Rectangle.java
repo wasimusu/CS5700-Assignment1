@@ -1,5 +1,7 @@
 package examples.shapes;
 
+import java.awt.*;
+
 public class Rectangle implements Shapes {
 
     protected Point Point1, Point2, Point3, Point4;
@@ -77,6 +79,14 @@ public class Rectangle implements Shapes {
         Point4.move(deltaX, deltaY);
     }
 
+    public void render(Graphics2D graphics) {
+        int x = (int) this.getPoint1().getX();
+        int y = (int) this.getPoint1().getY();
+        int length = (int) this.getLength();
+        int breadth = (int) this.getBreadth();
+        graphics.drawRect(x, y, length, breadth);
+    }
+
     @Override
     public String toString() {
         return "Rectangle:" +
@@ -90,7 +100,7 @@ public class Rectangle implements Shapes {
                 String.valueOf(this.getPoint4().getY());
     }
 
-    public Rectangle(String string) throws ShapeException{
+    public Rectangle(String string) throws ShapeException {
         // Expecting only parameters
         // x, y, majorRadius, minorRadius
         String[] strings = string.split(",");
@@ -98,5 +108,6 @@ public class Rectangle implements Shapes {
         this.Point2 = new Point(Double.valueOf(strings[2]), Double.valueOf(strings[3]));
         this.Point3 = new Point(Double.valueOf(strings[4]), Double.valueOf(strings[5]));
         this.Point4 = new Point(Double.valueOf(strings[6]), Double.valueOf(strings[7]));
+        System.out.println("Created a new ellipse with area : " + this.area());
     }
 }

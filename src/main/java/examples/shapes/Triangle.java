@@ -1,6 +1,8 @@
 package examples.shapes;
 
-public class Triangle implements Shapes{
+import java.awt.*;
+
+public class Triangle implements Shapes {
     private Point Point1, Point2, Point3;
 
     // constructor for declaring triangle using three Points
@@ -57,6 +59,22 @@ public class Triangle implements Shapes{
         return Point3;
     }
 
+    public void render(Graphics2D graphics) {
+        // render a triangle
+        int[] x = new int[5];
+        int[] y = new int[5];
+
+        x[0] = (int) this.getPoint1().getX();
+        x[1] = (int) this.getPoint2().getX();
+        x[2] = (int) this.getPoint3().getX();
+        y[0] = (int) this.getPoint1().getY();
+        y[1] = (int) this.getPoint2().getY();
+        y[2] = (int) this.getPoint3().getY();
+
+        graphics.drawPolyline(x, y, 3);
+    }
+
+
     @Override
     public String toString() {
         return "Triangle:" +
@@ -68,12 +86,13 @@ public class Triangle implements Shapes{
                 String.valueOf(this.getPoint3().getY());
     }
 
-    public Triangle(String string) throws ShapeException{
+    public Triangle(String string) throws ShapeException {
         // Expecting only parameters
         // x, y, majorRadius, minorRadius
         String[] strings = string.split(",");
         this.Point1 = new Point(Double.valueOf(strings[0]), Double.valueOf(strings[1]));
         this.Point2 = new Point(Double.valueOf(strings[2]), Double.valueOf(strings[3]));
         this.Point3 = new Point(Double.valueOf(strings[4]), Double.valueOf(strings[5]));
+        System.out.println("Created a new triangle with area : " + this.area());
     }
 }

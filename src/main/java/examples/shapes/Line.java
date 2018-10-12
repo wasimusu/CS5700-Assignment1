@@ -1,11 +1,11 @@
 package examples.shapes;
 
+import java.awt.*;
+
 /**
- *
- *  Line
- *
- *  This class represents line objects that can be moved.  Users of a line can also get its length and slope.
- *
+ * Line
+ * <p>
+ * This class represents line objects that can be moved.  Users of a line can also get its length and slope.
  */
 @SuppressWarnings("WeakerAccess")
 public class Line {
@@ -15,11 +15,12 @@ public class Line {
 
     /**
      * Constructor based on x-y Locations
-     * @param x1                The x-location of first point -- must be a valid double.
-     * @param y1                The y-location of first point -- must be a valid double.
-     * @param x2                The x-location of second point -- must be a valid double.
-     * @param y2                The y-location of second point -- must be a valid double.
-     * @throws ShapeException   Exception throw if any parameter is invalid
+     *
+     * @param x1 The x-location of first point -- must be a valid double.
+     * @param y1 The y-location of first point -- must be a valid double.
+     * @param x2 The x-location of second point -- must be a valid double.
+     * @param y2 The y-location of second point -- must be a valid double.
+     * @throws ShapeException Exception throw if any parameter is invalid
      */
     public Line(double x1, double y1, double x2, double y2) throws ShapeException {
         Point1 = new Point(x1, y1);
@@ -30,13 +31,12 @@ public class Line {
     }
 
     /**
-     *
-     * @param Point1            The first point -- must not be null
-     * @param Point2            The second point -- must not b e null
-     * @throws ShapeException   Exception throw if any parameter is invalid
+     * @param Point1 The first point -- must not be null
+     * @param Point2 The second point -- must not b e null
+     * @throws ShapeException Exception throw if any parameter is invalid
      */
     public Line(Point Point1, Point Point2) throws ShapeException {
-        if (Point1==null || Point2==null)
+        if (Point1 == null || Point2 == null)
             throw new ShapeException("Invalid Point");
 
         this.Point1 = Point1;
@@ -47,21 +47,25 @@ public class Line {
     }
 
     /**
-     * @return  The first point
+     * @return The first point
      */
-    public Point getPoint1() { return Point1; }
+    public Point getPoint1() {
+        return Point1;
+    }
 
     /**
-     * @return  The second point
+     * @return The second point
      */
-    public Point getPoint2() { return Point2; }
+    public Point getPoint2() {
+        return Point2;
+    }
 
     /**
      * Move a line
      *
-     * @param deltaX            The delta x-location by which the line should be moved -- must be a valid double
-     * @param deltaY            The delta y-location by which the line should be moved -- must be a valid double
-     * @throws ShapeException   Exception throw if any parameter is invalid
+     * @param deltaX The delta x-location by which the line should be moved -- must be a valid double
+     * @param deltaY The delta y-location by which the line should be moved -- must be a valid double
+     * @throws ShapeException Exception throw if any parameter is invalid
      */
     public void move(double deltaX, double deltaY) throws ShapeException {
         Point1.move(deltaX, deltaY);
@@ -69,18 +73,26 @@ public class Line {
     }
 
     /**
-     * @return  The length of the line
+     * @return The length of the line
      */
     public double computeLength() {
         return Math.sqrt(Math.pow(Point2.getX() - Point1.getX(), 2) +
-                         Math.pow(Point2.getY() - Point1.getY(), 2));
+                Math.pow(Point2.getY() - Point1.getY(), 2));
     }
 
     /**
-     * @return  The slope of the line
+     * @return The slope of the line
      */
     public double computeSlope() {
-        return (Point2.getY() - Point1.getY())/(Point2.getX() - Point1.getX());
+        return (Point2.getY() - Point1.getY()) / (Point2.getX() - Point1.getX());
+    }
+
+    public void render(Graphics2D graphics) {
+        int x1 = (int) (this.Point1.getX());
+        int y1 = (int) (this.Point1.getY());
+        int x2 = (int) (this.Point2.getX());
+        int y2 = (int) (this.Point2.getY());
+        graphics.drawLine(x1, y1, x2, y2);
     }
 
     @Override
@@ -92,7 +104,7 @@ public class Line {
                 String.valueOf(this.getPoint2().getY());
     }
 
-    public Line(String string) throws ShapeException{
+    public Line(String string) throws ShapeException {
         // Expecting only parameters
         // x, y, majorRadius, minorRadius
         String[] strings = string.split(",");

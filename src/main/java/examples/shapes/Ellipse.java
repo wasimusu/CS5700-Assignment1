@@ -112,23 +112,24 @@ public class Ellipse implements Shapes {
                 String.valueOf(this.minorRadius);
     }
 
-    public Ellipse(String string) throws ShapeException{
+    public Ellipse(String string) throws ShapeException {
         // Expecting only parameters
         // x, y, majorRadius, minorRadius
         String[] strings = string.split(",");
         double x = Double.valueOf(strings[0]);
         double y = Double.valueOf(strings[1]);
-        this.majorRadius = Double.valueOf(strings[2]);;
-        this.minorRadius = Double.valueOf(strings[3]);;
-        this.center = new Point(x,y);
+        this.majorRadius = Double.valueOf(strings[2]);
+        this.minorRadius = Double.valueOf(strings[3]);
+        this.center = new Point(x, y);
+        System.out.println("Created a new ellipse with area : "+this.area());
+    }
 
-    public Graphics2D render(Graphics2D graphics) throws Exception {
+    public void render(Graphics2D graphics) {
         int majorRadius = (int) (this.majorRadius);
-        int minorRadius  = (int) (this.minorRadius);
+        int minorRadius = (int) (this.minorRadius);
         int x = (int) this.center.getX() - majorRadius;
         int y = (int) this.center.getY() - minorRadius;
-        graphics.drawOval(x,y,majorRadius*2, minorRadius*2);
-        return graphics;
+        graphics.drawOval(x, y, majorRadius * 2, minorRadius * 2);
     }
 
 }

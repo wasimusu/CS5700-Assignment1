@@ -1,5 +1,6 @@
 package examples.shapes;
 
+import java.awt.*;
 import java.io.Serializable;
 
 /**
@@ -68,4 +69,27 @@ public class Point implements Serializable {
     public Point copy() throws ShapeException {
         return new Point(x, y);
     }
+
+    public void render(Graphics2D graphics) {
+        int x1 = (int) (this.getX());
+        int y1 = (int) (this.getY());
+        graphics.drawLine(x1, y1, x1, y1);
+    }
+
+    @Override
+    public String toString() {
+        return "Triangle:" +
+                String.valueOf(this.getX()) + "," +
+                String.valueOf(this.getY());
+    }
+
+    public Point(String string) throws ShapeException {
+        // Expecting only parameters
+        // x, y, majorRadius, minorRadius
+        String[] strings = string.split(",");
+        this.x = Double.valueOf(strings[0]);
+        this.y = Double.valueOf(strings[1]);
+        System.out.println("Created a new point with area 0 ");
+    }
+
 }
