@@ -9,4 +9,5 @@ gradle
 **/out
 
 *.class
-
+gradlew
+settings.gradle
