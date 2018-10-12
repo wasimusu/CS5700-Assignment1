@@ -1,5 +1,7 @@
 package examples.shapes;
 
+import java.awt.*;
+
 /**
  * Ellipse
  * <p>
@@ -119,6 +121,14 @@ public class Ellipse implements Shapes {
         this.majorRadius = Double.valueOf(strings[2]);;
         this.minorRadius = Double.valueOf(strings[3]);;
         this.center = new Point(x,y);
+
+    public Graphics2D render(Graphics2D graphics) throws Exception {
+        int majorRadius = (int) (this.majorRadius);
+        int minorRadius  = (int) (this.minorRadius);
+        int x = (int) this.center.getX() - majorRadius;
+        int y = (int) this.center.getY() - minorRadius;
+        graphics.drawOval(x,y,majorRadius*2, minorRadius*2);
+        return graphics;
     }
 
 }

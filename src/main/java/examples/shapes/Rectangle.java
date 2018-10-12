@@ -99,5 +99,4 @@ public class Rectangle implements Shapes {
         this.Point3 = new Point(Double.valueOf(strings[4]), Double.valueOf(strings[5]));
         this.Point4 = new Point(Double.valueOf(strings[6]), Double.valueOf(strings[7]));
     }
-
 }
