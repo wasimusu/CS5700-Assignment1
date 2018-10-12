@@ -78,4 +78,8 @@ public class Rectangle implements Shapes {
         Point3.move(deltaX, deltaY);
         Point4.move(deltaX, deltaY);
     }
+
+    public Rectangle(String string){
+        System.out.println(string);
+    }
 }

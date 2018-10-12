@@ -25,4 +25,5 @@ public class Circle extends Ellipse implements Serializable {
     public double getRadius() throws ShapeException {
         return super.getmajorRadius();
     }
+
 }
