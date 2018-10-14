@@ -13,12 +13,23 @@ public class FileIOTest {
         Point p3 = new Point(4, 4);
         Point p4 = new Point(0, 4);
 
-        Rectangle rectangle = new Rectangle(p1, p2, p3, p4);
+        Point p5 = new Point(4, 6);
+        Point p6 = new Point(0, 6);
+
+        Rectangle rectangle = new Rectangle(p1, p2, p5, p6);
+        Square square = new Square(p1, p2, p3, p4);
         Triangle triangle = new Triangle(p1, p2, p3);
+        Line line = new Line(p1, p5);
+        Ellipse ellipse = new Ellipse(10, 10, 50, 40);
+        Circle circle = new Circle(20, 20, 40);
 
         CompositeShape compositeShape = new CompositeShape();
         compositeShape.addShape(triangle);
         compositeShape.addShape(rectangle);
+        compositeShape.addShape(square);
+        compositeShape.addShape(line);
+        compositeShape.addShape(ellipse);
+        compositeShape.addShape(circle);
 
         double area = compositeShape.area();
         System.out.println("Computed area of the composite shape is :" + area);

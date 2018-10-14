@@ -1,5 +1,9 @@
 package examples.shapes;
+
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.ArrayList;
 
 
@@ -36,24 +40,34 @@ public class CompositeShape implements Shapes {
 
     @Override
     public String toString() {
-        String string = "Composite:" + String.valueOf(this.composites.size())+System.lineSeparator();
+        String string = "Composite:" + String.valueOf(this.composites.size()) + System.lineSeparator();
         for (Shapes shape : composites) {
-            string = string.concat(shape.toString()+System.lineSeparator());
+            string = string.concat(shape.toString() + System.lineSeparator());
         }
         return string;
     }
 
     public void render(Graphics2D graphics) {
+        // Construct the bufferedImage of one of the predefined image types
+//        int width = 800;
+//        int height = 800;
+//        BufferedImage bufferedImage = new BufferedImage(width,height,BufferedImage.TYPE_INT_RGB);
+
+        // create a graphics which can be used to draw into buffered image
+//        Graphics2D graphics = bufferedImage.createGraphics();
+        graphics.setColor(Color.white);
+
         // Iterate through all the shapes and render them individually
         for (Shapes shape : composites) {
             shape.render(graphics);
         }
-    }
 
-    public CompositeShape(String string) throws ShapeException{
-        // Expecting only parameters
-        // x, y, majorRadius, minorRadius
-        String[] strings = string.split(",");
+        // Save the rendered image
+        // Save as PNG
+//        File file = new File("image.png");
+//        ImageIO.write(graphics,"png",file);
+//        graphics.dispose();
+
     }
 
 }

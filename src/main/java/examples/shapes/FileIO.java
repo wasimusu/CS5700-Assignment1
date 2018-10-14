@@ -4,6 +4,7 @@ package examples.shapes;
 // reads composite shapes
 // saves composite shapes
 
+import java.awt.image.BufferedImage;
 import java.io.*;
 
 public class FileIO {
@@ -32,5 +33,9 @@ public class FileIO {
                 new FileOutputStream(filename), "utf-8"))) {
             writer.write(shape.toString());
         }
+    }
+
+    public void writeRenderedImage(BufferedImage Image) throws Exception{
+
     }
 }

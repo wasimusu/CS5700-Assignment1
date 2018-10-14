@@ -89,6 +89,7 @@ public class Triangle implements Shapes {
     public Triangle(String string) throws ShapeException {
         // Expecting only parameters
         // x, y, majorRadius, minorRadius
+
         String[] strings = string.split(",");
         this.Point1 = new Point(Double.valueOf(strings[0]), Double.valueOf(strings[1]));
         this.Point2 = new Point(Double.valueOf(strings[2]), Double.valueOf(strings[3]));

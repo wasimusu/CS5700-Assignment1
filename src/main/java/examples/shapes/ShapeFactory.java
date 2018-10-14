@@ -10,12 +10,6 @@ public class ShapeFactory {
         for (String shape : shapes) {
             String identifier = shape.split(":")[0];
             shape = shape.split(":")[1];
-            if (identifier.equals("circle")) {
-                System.out.println("Circle " + shape);
-                Ellipse circle = new Ellipse(shape);
-                compositeShape.addShape(circle);
-            }
-
             if (identifier.equals("rectangle")) {
                 System.out.println("Rectangle " + shape);
                 Rectangle rectangle = new Rectangle(shape);
@@ -26,6 +20,18 @@ public class ShapeFactory {
                 System.out.println("Triangle " + shape);
                 Triangle triangle = new Triangle(shape);
                 compositeShape.addShape(triangle);
+            }
+
+            if (identifier.equals("ellipse")) {
+                System.out.println("Ellipse" + shape);
+                Ellipse ellipse= new Ellipse(shape);
+                compositeShape.addShape(ellipse);
+            }
+
+            if (identifier.equals("line")) {
+                System.out.println("Line" + shape);
+                Line line = new Line(shape);
+                compositeShape.addShape(line);
             }
         }
 
