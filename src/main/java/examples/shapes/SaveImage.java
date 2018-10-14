@@ -3,9 +3,7 @@ package examples.shapes;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
 import java.io.File;
-import java.io.IOException;
 
 public class SaveImage {
     public static void main(String[] args) throws Exception{
@@ -22,21 +20,17 @@ public class SaveImage {
         Graphics2D graphics = bufferedImage.createGraphics();
         graphics.setColor(Color.white);
 
-//        graphics.drawRect(40,40,400,300);
-//        graphics.drawImage(image, 80,80,100,300,null);
-        // Release graphics resource
-
         Circle circle = new Circle(200, 200, 220);
         Ellipse circle1 = new Ellipse(200, 200, 200, 50);
         Circle circle2 = new Circle(200, 200, 100);
         circle.render(graphics);
         circle1.render(graphics);
         circle2.render(graphics);
+
         // Save as PNG
         File file = new File("image.png");
         ImageIO.write(bufferedImage,"png",file);
 
         graphics.dispose();
-
     }
 }

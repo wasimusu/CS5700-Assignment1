@@ -1,5 +1,5 @@
 package examples.shapes;
-import java.io.Serializable;
+import java.awt.*;
 import java.util.ArrayList;
 
 
@@ -34,7 +34,26 @@ public class CompositeShape implements Shapes {
         return totalArea;
     }
 
-    public void render() {
+    @Override
+    public String toString() {
+        String string = "Composite:" + String.valueOf(this.composites.size())+"\n";
+        for (Shapes shape : composites) {
+            string = string.concat(shape.toString()+"\n");
+        }
+        return string;
+    }
+
+    public void render(Graphics2D graphics) {
+        // Iterate through all the shapes and render them individually
+        for (Shapes shape : composites) {
+            shape.render(graphics);
+        }
+    }
+
+    public CompositeShape(String string) throws ShapeException{
+        // Expecting only parameters
+        // x, y, majorRadius, minorRadius
+        String[] strings = string.split(",");
     }
 
     public static void main(String[] args) throws Exception {
@@ -50,5 +69,4 @@ public class CompositeShape implements Shapes {
         double area = compositeShape.area();
         System.out.println("Computed area of the composite shape is :" + area);
     }
-
 }

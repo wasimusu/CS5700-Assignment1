@@ -1,9 +1,6 @@
 package examples.shapes;
 
-import java.awt.*;
-import java.io.Serializable;
-
-public class Circle extends Ellipse implements Serializable {
+public class Circle extends Ellipse {
 
     public Circle(Point center, double radius) throws ShapeException {
         Validator.validatePositiveDouble(radius, "Invalid radius");
@@ -22,8 +19,7 @@ public class Circle extends Ellipse implements Serializable {
         this.center = new Point(x, y);
     }
 
-    public double getRadius() throws ShapeException {
+    public double getRadius(){
         return super.getmajorRadius();
     }
-
 }

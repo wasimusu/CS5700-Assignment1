@@ -31,6 +31,7 @@ public class Ellipse implements Shapes {
 
     /**
      * Constructor with a Point for center
+     *
      * @param center      The x-location of the center of the Ellipse -- must be a valid point
      * @param majorRadius The majorRadius of the Ellipse -- must be greater or equal to zero.
      * @throws ShapeException The exception thrown if the x, y, or z are not valid
@@ -102,17 +103,33 @@ public class Ellipse implements Shapes {
         return Math.PI * majorRadius * minorRadius;
     }
 
-    public Graphics2D render(Graphics2D graphics) throws Exception {
-        int majorRadius = (int) (this.majorRadius);
-        int minorRadius  = (int) (this.minorRadius);
-        int x = (int) this.center.getX() - majorRadius;
-        int y = (int) this.center.getY() - minorRadius;
-        graphics.drawOval(x,y,majorRadius*2, minorRadius*2);
-        return graphics;
+    @Override
+    public String toString() {
+        return "Ellipse:" +
+                String.valueOf(this.center.getX()) + "," +
+                String.valueOf(this.center.getY()) + "," +
+                String.valueOf(this.majorRadius) + "," +
+                String.valueOf(this.minorRadius);
     }
 
-    public Ellipse(String string){
-        System.out.println(string);
+    public Ellipse(String string) throws ShapeException {
+        // Expecting only parameters
+        // x, y, majorRadius, minorRadius
+        String[] strings = string.split(",");
+        double x = Double.valueOf(strings[0]);
+        double y = Double.valueOf(strings[1]);
+        this.majorRadius = Double.valueOf(strings[2]);
+        this.minorRadius = Double.valueOf(strings[3]);
+        this.center = new Point(x, y);
+        System.out.println("Created a new ellipse with area : "+this.area());
+    }
+
+    public void render(Graphics2D graphics) {
+        int majorRadius = (int) (this.majorRadius);
+        int minorRadius = (int) (this.minorRadius);
+        int x = (int) this.center.getX() - majorRadius;
+        int y = (int) this.center.getY() - minorRadius;
+        graphics.drawOval(x, y, majorRadius * 2, minorRadius * 2);
     }
 
 }
