@@ -2,19 +2,35 @@ package examples.shapes;
 
 public class ShapeFactory {
 
-    public void create(String string) throws Exception {
+    public CompositeShape create(String string) throws Exception {
         CompositeShape compositeShape = new CompositeShape();
         string = string.toLowerCase();
+        String[] shapes = string.split(System.getProperty("line.separator"));
 
-        if (string.equals("circle")) {
-            Ellipse circle = new Ellipse("circle");
-            compositeShape.addShape(circle);
+        for (String shape : shapes) {
+            String identifier = shape.split(":")[0];
+            shape = shape.split(":")[1];
+            if (identifier.equals("circle")) {
+                System.out.println("Circle " + shape);
+                Ellipse circle = new Ellipse(shape);
+                compositeShape.addShape(circle);
+            }
+
+            if (identifier.equals("rectangle")) {
+                System.out.println("Rectangle " + shape);
+                Rectangle rectangle = new Rectangle(shape);
+                compositeShape.addShape(rectangle);
+            }
+
+            if (identifier.equals("triangle")) {
+                System.out.println("Triangle " + shape);
+                Triangle triangle = new Triangle(shape);
+                compositeShape.addShape(triangle);
+            }
         }
 
-        if (string.equals("rectangle")) {
-            Rectangle r1 = new Rectangle("rectangle");
-            compositeShape.addShape(r1);
-        }
+
+        return compositeShape;
     }
 
     public static void main(String[] args) throws Exception {

@@ -36,9 +36,9 @@ public class CompositeShape implements Shapes {
 
     @Override
     public String toString() {
-        String string = "Composite:" + String.valueOf(this.composites.size())+"\n";
+        String string = "Composite:" + String.valueOf(this.composites.size())+System.lineSeparator();
         for (Shapes shape : composites) {
-            string = string.concat(shape.toString()+"\n");
+            string = string.concat(shape.toString()+System.lineSeparator());
         }
         return string;
     }
@@ -56,17 +56,4 @@ public class CompositeShape implements Shapes {
         String[] strings = string.split(",");
     }
 
-    public static void main(String[] args) throws Exception {
-        Point p1 = new Point(0, 0);
-        Point p2 = new Point(4, 0);
-        Point p3 = new Point(4, 4);
-        Point p4 = new Point(0, 4);
-        Rectangle rectangle = new Rectangle(p1, p2, p3, p4);
-        Triangle triangle = new Triangle(p1, p2, p3);
-        CompositeShape compositeShape = new CompositeShape();
-        compositeShape.addShape(triangle);
-        compositeShape.addShape(rectangle);
-        double area = compositeShape.area();
-        System.out.println("Computed area of the composite shape is :" + area);
-    }
 }

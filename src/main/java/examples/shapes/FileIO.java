@@ -8,7 +8,7 @@ import java.io.*;
 
 public class FileIO {
 
-    public String readShape(String filename) throws Exception {
+    public CompositeShape readShape(String filename) throws Exception {
         // Filename
         File file = new File(filename);
 
@@ -19,25 +19,18 @@ public class FileIO {
         String shape ="";
         // Split by line and then split by space
         while ((line = br.readLine()) != null)
-            shape = shape.concat(line);
+            shape = shape.concat(line+System.lineSeparator());
 
         // Parse the input
-        return shape;
-
+        ShapeFactory shapeObject = new ShapeFactory();
+        CompositeShape compositeShape = shapeObject.create(shape);
+        return compositeShape;
     }
 
-    public void writeShape(String filename, String shape) throws Exception {
+    public void writeShape(String filename, CompositeShape shape) throws Exception {
         try (Writer writer = new BufferedWriter(new OutputStreamWriter(
                 new FileOutputStream(filename), "utf-8"))) {
-            writer.write(shape);
+            writer.write(shape.toString());
         }
-    }
-
-    public static void main(String[] args) throws Exception {
-        // Filename
-        String filename = "D:/test.txt";
-        FileIO reader = new FileIO();
-        reader.readShape(filename);
-        reader.writeShape("D:/newshape.txt","This is me saving my new shape");
     }
 }

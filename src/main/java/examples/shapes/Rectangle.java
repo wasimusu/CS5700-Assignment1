@@ -102,7 +102,7 @@ public class Rectangle implements Shapes {
 
     public Rectangle(String string) throws ShapeException {
         // Expecting only parameters
-        // x, y, majorRadius, minorRadius
+        System.out.println("Received :"+string);
         String[] strings = string.split(",");
         this.Point1 = new Point(Double.valueOf(strings[0]), Double.valueOf(strings[1]));
         this.Point2 = new Point(Double.valueOf(strings[2]), Double.valueOf(strings[3]));
