@@ -109,7 +109,11 @@ public class Line implements Shapes {
 
     public Line(String string) throws ShapeException {
         // Expecting only parameters
-        // x, y, majorRadius, minorRadius
+        // x1, y1, x2, y2
+
+        if (string.toLowerCase().contains("line:"))
+            string = string.split(":")[1];
+
         String[] strings = string.split(",");
         this.Point1 = new Point(Double.valueOf(strings[0]), Double.valueOf(strings[1]));
         this.Point2 = new Point(Double.valueOf(strings[2]), Double.valueOf(strings[3]));

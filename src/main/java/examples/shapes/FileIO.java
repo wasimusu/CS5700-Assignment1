@@ -35,7 +35,4 @@ public class FileIO {
         }
     }
 
-    public void writeRenderedImage(BufferedImage Image) throws Exception{
-
-    }
 }

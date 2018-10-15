@@ -3,14 +3,18 @@ package examples.shapes;
 import java.awt.*;
 import java.util.HashMap;
 
-public class EmbedImage {
-    private Point point;
+public class EmbedImage implements Shapes{
+    private Point startPoint;
+    private int height;
+    private int width;
     private UserImage userImage;
     private String filename;
     private static HashMap<String, UserImage> stringImageHashMap = new HashMap<String, UserImage>();
 
-    public EmbedImage(String filename, double x, double y) throws Exception {
-        point = new Point(x, y);
+    public EmbedImage(String filename, double x, double y, int height, int width) throws Exception {
+        this.startPoint = new Point(x, y);
+        this.height = height;
+        this.width = width;
         this.filename = filename;
         this.userImage = stringImageHashMap.get(filename);
 
@@ -22,24 +26,43 @@ public class EmbedImage {
         }
     }
 
+    public double area(){
+        return this.width*this.height;
+    }
+
+    public void move(double deltaX, double deltaY) throws ShapeException{
+        this.startPoint.move(deltaX, deltaY);
+    }
+
     public void render(Graphics2D graphics) {
-        this.userImage.render(graphics, this.point.getX(), this.point.getY());
+        this.userImage.render(graphics, this.startPoint.getX(), this.startPoint.getY());
+    }
+
+    public Point getStartPoint(){
+        return this.startPoint;
     }
 
     @Override
     public String toString() {
         return "EmbedImage:" +
                 this.filename + "," +
-                this.point.getX() + "," +
-                this.point.getY();
+                this.startPoint.getX() + "," +
+                this.startPoint.getY() + "," +
+                this.height + "," +
+                this.width;
     }
-    
+
     public EmbedImage(String string) throws ShapeException {
         // Expecting only parameters
+        if (string.toLowerCase().contains("embedimage:"))
+            string = string.split(":")[1];
+
         String[] strings = string.split(",");
         this.filename = strings[0];
-        int x = Integer.valueOf(strings[1]);
-        int y = Integer.valueOf(strings[2]);
-        this.point = new Point(x, y);
+        double x = Double.valueOf(strings[1]);
+        double y = Double.valueOf(strings[2]);
+        this.height = Integer.valueOf(strings[3]);
+        this.width = Integer.valueOf(strings[4]);
+        this.startPoint = new Point(x, y);
     }
 }

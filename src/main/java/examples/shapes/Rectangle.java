@@ -18,12 +18,17 @@ public class Rectangle implements Shapes {
         if (Point1 == null || Point2 == null || Point3 == null || Point4 == null)
             throw new ShapeException("Invalid vertex or vertices");
 
+        this.computeLengthBreadth(); // assert rectangle properties to make sure this is a valid rectangle
+
+    }
+
+    private void computeLengthBreadth() throws ShapeException{
         // Check if the points make a valid rectangle
-        Line l1 = new Line(Point1, Point2);
-        Line l2 = new Line(Point2, Point3);
-        Line l3 = new Line(Point3, Point4);
-        Line l4 = new Line(Point4, Point1);
-        Line diagonal = new Line(Point2, Point4);
+        Line l1 = new Line(this.Point1, this.Point2);
+        Line l2 = new Line(this.Point2, this.Point3);
+        Line l3 = new Line(this.Point3, this.Point4);
+        Line l4 = new Line(this.Point4, this.Point1);
+        Line diagonal = new Line(this.Point2, this.Point4);
 
         // Compute the length of sides
         double length1 = l1.computeLength();
@@ -33,8 +38,8 @@ public class Rectangle implements Shapes {
         double length_diag = diagonal.computeLength();
 
         // Determine length and breadth
-        length = Math.max(length1, length2);
-        breadth = Math.min(length1, length2);
+        this.length = Math.max(length1, length2);
+        this.breadth = Math.min(length1, length2);
 
         // compare the length of opposite sides and pythagoras test
         assert length1 == length3;
@@ -43,7 +48,7 @@ public class Rectangle implements Shapes {
     }
 
     public double area() {
-        return length * breadth;
+        return this.length * this.breadth;
     }
 
     public double getLength() {
@@ -100,14 +105,17 @@ public class Rectangle implements Shapes {
                 String.valueOf(this.getPoint4().getY());
     }
 
-    public Rectangle(String string) throws ShapeException {
+    public Rectangle(String string) throws Exception {
         // Expecting only parameters
-        System.out.println("Received :"+string);
+        if (string.toLowerCase().contains("rectangle:"))
+            string = string.split(":")[1];
+
         String[] strings = string.split(",");
         this.Point1 = new Point(Double.valueOf(strings[0]), Double.valueOf(strings[1]));
         this.Point2 = new Point(Double.valueOf(strings[2]), Double.valueOf(strings[3]));
         this.Point3 = new Point(Double.valueOf(strings[4]), Double.valueOf(strings[5]));
         this.Point4 = new Point(Double.valueOf(strings[6]), Double.valueOf(strings[7]));
-        System.out.println("Created a new ellipse with area : " + this.area());
+        this.computeLengthBreadth(); // assert rectangle properties to make sure this is a valid rectangle
+        System.out.println("Created a new Rectangle with area : " + this.area());
     }
 }

@@ -115,6 +115,10 @@ public class Ellipse implements Shapes {
     public Ellipse(String string) throws ShapeException {
         // Expecting only parameters
         // x, y, majorRadius, minorRadius
+
+        if (string.toLowerCase().contains("ellipse:"))
+                string = string.split(":")[1];
+
         String[] strings = string.split(",");
         double x = Double.valueOf(strings[0]);
         double y = Double.valueOf(strings[1]);

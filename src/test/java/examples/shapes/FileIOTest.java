@@ -34,7 +34,7 @@ public class FileIOTest {
         double area = compositeShape.area();
         System.out.println("Computed area of the composite shape is :" + area);
 
-        String filename = "D:/test.txt";
+        String filename = "test.txt";
         FileIO file = new FileIO();
         file.writeShape(filename, compositeShape);
 

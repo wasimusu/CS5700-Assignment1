@@ -61,15 +61,18 @@ public class Triangle implements Shapes {
 
     public void render(Graphics2D graphics) {
         // render a triangle
-        int[] x = new int[5];
-        int[] y = new int[5];
+        int[] x = new int[4];
+        int[] y = new int[4];
 
         x[0] = (int) this.getPoint1().getX();
         x[1] = (int) this.getPoint2().getX();
         x[2] = (int) this.getPoint3().getX();
+        x[3] = x[0];
+
         y[0] = (int) this.getPoint1().getY();
         y[1] = (int) this.getPoint2().getY();
         y[2] = (int) this.getPoint3().getY();
+        y[3] = y[0];
 
         graphics.drawPolyline(x, y, 3);
     }
@@ -89,6 +92,8 @@ public class Triangle implements Shapes {
     public Triangle(String string) throws ShapeException {
         // Expecting only parameters
         // x, y, majorRadius, minorRadius
+        if (string.toLowerCase().contains("triangle:"))
+            string = string.split(":")[1];
 
         String[] strings = string.split(",");
         this.Point1 = new Point(Double.valueOf(strings[0]), Double.valueOf(strings[1]));

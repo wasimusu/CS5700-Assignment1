@@ -250,4 +250,20 @@ public class EllipseTest {
         myEllipse = new Ellipse(1, 2, 0, 0);
         assertEquals(0, myEllipse.area(), 0);
     }
+
+    @Test
+    public void testToString() throws Exception{
+        Ellipse myEllipse = new Ellipse(1, 2, 5, 3);
+        Ellipse newEllipse = new Ellipse(myEllipse.toString());
+        assert newEllipse.toString().equals(myEllipse.toString());
+        System.out.println(newEllipse.area());
+        myEllipse = new Ellipse(1, 2, 4.234, 4);
+        newEllipse = new Ellipse(myEllipse.toString());
+        assert newEllipse.toString().equals(myEllipse.toString());
+
+        myEllipse = new Ellipse(1, 2, 0, 0);
+        newEllipse = new Ellipse(myEllipse.toString());
+        assert newEllipse.toString().equals(myEllipse.toString());
+    }
+
 }

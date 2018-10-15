@@ -24,7 +24,7 @@ public class ShapeFactory {
 
             if (identifier.equals("ellipse")) {
                 System.out.println("Ellipse" + shape);
-                Ellipse ellipse= new Ellipse(shape);
+                Ellipse ellipse = new Ellipse(shape);
                 compositeShape.addShape(ellipse);
             }
 
@@ -37,11 +37,5 @@ public class ShapeFactory {
 
 
         return compositeShape;
-    }
-
-    public static void main(String[] args) throws Exception {
-        ShapeFactory shapeFactory = new ShapeFactory();
-        shapeFactory.create("circle: 10 10 20 20");
-        shapeFactory.create("rectangle 1 1 1 4 4 1 1 4");
     }
 }

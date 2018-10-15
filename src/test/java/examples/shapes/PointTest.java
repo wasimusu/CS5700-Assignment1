@@ -2,6 +2,9 @@ package examples.shapes;
 
 import org.junit.Test;
 
+import java.awt.*;
+import java.awt.image.BufferedImage;
+
 import static org.junit.Assert.*;
 
 public class PointTest {
@@ -242,4 +245,32 @@ public class PointTest {
         p1.move(0.2, 0.1);
         assert !p1.equalsTo(p2);
     }
+
+    @Test
+    public void stringConstructorTest() throws ShapeException {
+        Point p1 = new Point(-123.45, -23.45);
+        Point p2 = new Point(p1.toString());
+        assert p2.equalsTo(p1);
+    }
+
+    @Test
+    public void renderTest() throws Exception {
+        // Test by manual inspection
+
+        Point point = new Point(20, 20);
+
+        // Construct the bufferedImage of one of the predefined image types
+        BufferedImage bufferedImage = new BufferedImage(40, 40, BufferedImage.TYPE_INT_RGB);
+        // create a graphics which can be used to draw into buffered image
+        Graphics2D graphics = bufferedImage.createGraphics();
+        graphics.setColor(Color.white);
+
+        point.render(graphics);
+    }
+
+    public void areaTest() throws Exception {
+        Point point = new Point(20, 20);
+        assertEquals(point.area(), 0, 0);
+    }
+
 }

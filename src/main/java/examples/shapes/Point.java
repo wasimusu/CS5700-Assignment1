@@ -1,7 +1,7 @@
 package examples.shapes;
 
 import java.awt.*;
-import java.io.Serializable;
+import java.awt.image.BufferedImage;
 
 /**
  * Point
@@ -9,7 +9,7 @@ import java.io.Serializable;
  * This class represents point objects that can be moved and copied
  */
 @SuppressWarnings("WeakerAccess")
-public class Point implements Serializable {
+public class Point implements Shapes{
     private double x;
     private double y;
 
@@ -70,6 +70,8 @@ public class Point implements Serializable {
         return new Point(x, y);
     }
 
+    public double area(){return 0;}
+
     public void render(Graphics2D graphics) {
         int x1 = (int) (this.getX());
         int y1 = (int) (this.getY());
@@ -78,14 +80,17 @@ public class Point implements Serializable {
 
     @Override
     public String toString() {
-        return "Triangle:" +
+        return "Point:" +
                 String.valueOf(this.getX()) + "," +
                 String.valueOf(this.getY());
     }
 
     public Point(String string) throws ShapeException {
         // Expecting only parameters
-        // x, y, majorRadius, minorRadius
+        // x, y
+        if (string.toLowerCase().contains("point:"))
+            string = string.split(":")[1];
+
         String[] strings = string.split(",");
         this.x = Double.valueOf(strings[0]);
         this.y = Double.valueOf(strings[1]);

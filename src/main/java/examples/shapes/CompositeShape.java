@@ -22,6 +22,10 @@ public class CompositeShape implements Shapes {
         composites.remove(shape);
     }
 
+    public int getItemCount() throws Exception{
+        return this.composites.size();
+    }
+
     public void move(double deltaX, double deltaY) throws ShapeException {
         // Iterate through all the shapes and move them
         for (Shapes shape : composites) {
