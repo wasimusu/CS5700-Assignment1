@@ -2,8 +2,10 @@ package examples.shapes;
 
 import org.junit.Test;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.File;
 
 import static org.junit.Assert.*;
 
@@ -268,9 +270,37 @@ public class PointTest {
         point.render(graphics);
     }
 
+    @Test
     public void areaTest() throws Exception {
         Point point = new Point(20, 20);
         assertEquals(point.area(), 0, 0);
     }
+
+    @Test
+    public void render() throws Exception {
+        // Test by manual inspection
+        String outputFilename = "point.png";
+
+        // Construct the bufferedImage of one of the predefined image types
+        BufferedImage bufferedImage = new BufferedImage(400, 400, BufferedImage.TYPE_INT_RGB);
+
+        // create a graphics which can be used to draw into buffered image
+        Graphics2D graphics = bufferedImage.createGraphics();
+        graphics.setColor(Color.white);
+
+        // generate set of points to render and render them
+        for (int i = 1; i <= 400; i++) {
+            Point point1 = new Point(i, i);
+            Point point2 = new Point(i, 400 - i);
+            point1.render(graphics);
+            point2.render(graphics);
+        }
+
+        // Save as PNG and release resource
+        File file = new File(outputFilename);
+        ImageIO.write(bufferedImage, "png", file);
+        graphics.dispose();
+    }
+
 
 }

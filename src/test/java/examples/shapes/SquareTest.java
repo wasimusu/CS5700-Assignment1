@@ -2,6 +2,11 @@ package examples.shapes;
 
 import org.junit.Test;
 
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
@@ -86,5 +91,34 @@ public class SquareTest {
             assertEquals("Invalid vertex or vertices", e.getMessage());
         }
     }
+
+    @Test
+    public void render() throws Exception {
+        // Test by manual inspection
+        String outputFilename = "square.png";
+
+        // Construct the bufferedImage of one of the predefined image types
+        BufferedImage bufferedImage = new BufferedImage(400, 400, BufferedImage.TYPE_INT_RGB);
+
+        // create a graphics which can be used to draw into buffered image
+        Graphics2D graphics = bufferedImage.createGraphics();
+        graphics.setColor(Color.white);
+
+        // Generate set of squares and render them
+        for (int i = 1; i <= 11; i++) {
+            Point p1 = new Point(0, 0);
+            Point p2 = new Point(40 * i, 0);
+            Point p3 = new Point(40 * i, 40 * i);
+            Point p4 = new Point(0, 40 * i);
+
+            Square square = new Square(p1, p2, p3, p4);
+            square.render(graphics);
+        }
+        // Save as PNG and release resource
+        File file = new File(outputFilename);
+        ImageIO.write(bufferedImage, "png", file);
+        graphics.dispose();
+    }
+
 
 }

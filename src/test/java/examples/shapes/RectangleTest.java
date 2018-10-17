@@ -1,6 +1,12 @@
 package examples.shapes;
 
 import org.junit.Test;
+import org.w3c.dom.css.Rect;
+
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertSame;
@@ -159,4 +165,33 @@ public class RectangleTest {
         }
 
     }
+
+    @Test
+    public void render() throws Exception {
+        // Test by manual inspection
+        String outputFilename = "rectangle.png";
+
+        // Construct the bufferedImage of one of the predefined image types
+        BufferedImage bufferedImage = new BufferedImage(400, 400, BufferedImage.TYPE_INT_RGB);
+
+        // create a graphics which can be used to draw into buffered image
+        Graphics2D graphics = bufferedImage.createGraphics();
+        graphics.setColor(Color.white);
+
+        // generate set of rectangles and render them
+        for (int i = 1; i <= 11; i++) {
+            Point p1 = new Point(0, 0);
+            Point p2 = new Point(29*i, 0);
+            Point p3 = new Point(29*i, 44*i);
+            Point p4 = new Point(0, 44*i);
+
+            Rectangle rectangle = new Rectangle(p1, p2, p3, p4);
+            rectangle.render(graphics);
+        }
+        // Save as PNG and release resource
+        File file = new File(outputFilename);
+        ImageIO.write(bufferedImage, "png", file);
+        graphics.dispose();
+    }
+
 }

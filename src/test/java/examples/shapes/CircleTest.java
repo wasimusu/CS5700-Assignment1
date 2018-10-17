@@ -2,6 +2,11 @@ package examples.shapes;
 
 import org.junit.Test;
 
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+
 import static org.junit.Assert.*;
 
 public class CircleTest {
@@ -239,5 +244,29 @@ public class CircleTest {
         myCircle = new Circle(1, 2, 0);
         assertEquals(0, myCircle.area(), 0);
     }
+
+    @Test
+    public void render() throws Exception {
+        // Test by manual inspection
+        String outputFilename = "circle.png";
+
+        // Construct the bufferedImage of one of the predefined image types
+        BufferedImage bufferedImage = new BufferedImage(400, 400, BufferedImage.TYPE_INT_RGB);
+
+        // create a graphics which can be used to draw into buffered image
+        Graphics2D graphics = bufferedImage.createGraphics();
+        graphics.setColor(Color.white);
+
+        // Generate set of circles and render them
+        for (int i = 1; i <= 11; i++) {
+            Circle circle = new Circle(200, 200, i*20);
+            circle.render(graphics);
+        }
+        // Save as PNG and release resource
+        File file = new File(outputFilename);
+        ImageIO.write(bufferedImage, "png", file);
+        graphics.dispose();
+    }
+
 
 }

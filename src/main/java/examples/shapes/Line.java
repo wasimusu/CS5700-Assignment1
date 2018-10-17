@@ -2,12 +2,6 @@ package examples.shapes;
 
 import java.awt.*;
 
-/**
- * Line
- * <p>
- * This class represents line objects that can be moved.  Users of a line can also get its length and slope.
- */
-@SuppressWarnings("WeakerAccess")
 public class Line implements Shapes {
 
     private Point Point1;

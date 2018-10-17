@@ -22,7 +22,7 @@ public class Rectangle implements Shapes {
 
     }
 
-    private void computeLengthBreadth() throws ShapeException{
+    private void computeLengthBreadth() throws ShapeException {
         // Check if the points make a valid rectangle
         Line l1 = new Line(this.Point1, this.Point2);
         Line l2 = new Line(this.Point2, this.Point3);

@@ -75,6 +75,35 @@ public class CompositeShapeTest {
     }
 
     @Test
+    public void compositeInCompositeTest() throws Exception{
+        Point p1 = new Point(0, 0);
+        Point p2 = new Point(40, 0);
+        Point p3 = new Point(40, 40);
+        Point p4 = new Point(0, 40);
+
+        Point p5 = new Point(40, 60);
+        Point p6 = new Point(0, 60);
+
+        Rectangle rectangle = new Rectangle(p1, p2, p5, p6);
+        Square square = new Square(p1, p2, p3, p4);
+        Triangle triangle = new Triangle(p1, p2, p3);
+        Ellipse ellipse = new Ellipse(100, 100, 50, 40);
+
+        CompositeShape compositeShape = new CompositeShape();
+        CompositeShape compositeShapeInner = new CompositeShape();
+
+        compositeShape.addShape(triangle);
+        compositeShape.addShape(rectangle);
+
+        compositeShapeInner.addShape(square);
+        compositeShapeInner.addShape(ellipse);
+
+        compositeShape.addShape(compositeShapeInner);
+        assertEquals(compositeShape.getItemCount(),3,0);
+        // that's because compositeShapeInner count as 1
+    }
+
+    @Test
     public void move() throws Exception {
         Point p1 = new Point(0, 0);
         Point p2 = new Point(40, 0);
@@ -121,7 +150,9 @@ public class CompositeShapeTest {
         movedCompositeShape.addShape(circle);
         movedCompositeShape.addShape(p1);
 
-        assert movedCompositeShape.equals(compositeShape);
+        assertEquals(movedCompositeShape.getItemCount(), compositeShape.getItemCount());
+        assertEquals(movedCompositeShape.area(), compositeShape.area(),0.001);
+        assert movedCompositeShape.toString().equals(compositeShape.toString());
     }
 
     @Test
@@ -197,9 +228,37 @@ public class CompositeShapeTest {
         // Save as PNG
         File file = new File("image.png");
         ImageIO.write(bufferedImage, "png", file);
-
         graphics.dispose();
-
     }
 
+
+    @Test
+    public void toStringTest() throws Exception{
+        // Composite of composite and embedded image
+        Point p1 = new Point(0, 0);
+        Point p2 = new Point(40, 0);
+        Point p3 = new Point(40, 40);
+        Point p4 = new Point(0, 40);
+
+        Point p5 = new Point(40, 60);
+        Point p6 = new Point(0, 60);
+
+        Rectangle rectangle = new Rectangle(p1, p2, p5, p6);
+        Square square = new Square(p1, p2, p3, p4);
+        Triangle triangle = new Triangle(p1, p2, p3);
+        Ellipse ellipse = new Ellipse(100, 100, 50, 40);
+
+        CompositeShape compositeShape = new CompositeShape();
+        CompositeShape compositeShapeInner = new CompositeShape();
+
+        compositeShape.addShape(triangle);
+        compositeShape.addShape(rectangle);
+
+        compositeShapeInner.addShape(square);
+        compositeShapeInner.addShape(ellipse);
+
+        compositeShape.addShape(compositeShapeInner);
+//        CompositeShape newComposite = new CompositeShape(compositeShape.toString());
+        // that's because compositeShapeInner count as 1
+    }
 }

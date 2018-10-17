@@ -52,26 +52,12 @@ public class CompositeShape implements Shapes {
     }
 
     public void render(Graphics2D graphics) {
-        // Construct the bufferedImage of one of the predefined image types
-//        int width = 800;
-//        int height = 800;
-//        BufferedImage bufferedImage = new BufferedImage(width,height,BufferedImage.TYPE_INT_RGB);
-
-        // create a graphics which can be used to draw into buffered image
-//        Graphics2D graphics = bufferedImage.createGraphics();
-        graphics.setColor(Color.white);
-
         // Iterate through all the shapes and render them individually
         for (Shapes shape : composites) {
             shape.render(graphics);
         }
-
-        // Save the rendered image
-        // Save as PNG
-//        File file = new File("image.png");
-//        ImageIO.write(graphics,"png",file);
-//        graphics.dispose();
-
     }
+
+
 
 }

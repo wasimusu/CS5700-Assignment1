@@ -74,7 +74,7 @@ public class Triangle implements Shapes {
         y[2] = (int) this.getPoint3().getY();
         y[3] = y[0];
 
-        graphics.drawPolyline(x, y, 3);
+        graphics.drawPolyline(x, y, 4);
     }
 
 
@@ -99,6 +99,6 @@ public class Triangle implements Shapes {
         this.Point1 = new Point(Double.valueOf(strings[0]), Double.valueOf(strings[1]));
         this.Point2 = new Point(Double.valueOf(strings[2]), Double.valueOf(strings[3]));
         this.Point3 = new Point(Double.valueOf(strings[4]), Double.valueOf(strings[5]));
-        System.out.println("Created a new triangle with area : " + this.area());
+//        System.out.println("Created a new triangle with area : " + this.area());
     }
 }

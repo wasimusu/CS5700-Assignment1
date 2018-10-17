@@ -23,6 +23,9 @@ public class FileIOTest {
         Ellipse ellipse = new Ellipse(10, 10, 50, 40);
         Circle circle = new Circle(20, 20, 40);
 
+        String imageFilename = "image.png";
+        EmbedImage embedImage = new EmbedImage(imageFilename, 10, 10, 40, 40);
+
         CompositeShape compositeShape = new CompositeShape();
         compositeShape.addShape(triangle);
         compositeShape.addShape(rectangle);
@@ -30,6 +33,12 @@ public class FileIOTest {
         compositeShape.addShape(line);
         compositeShape.addShape(ellipse);
         compositeShape.addShape(circle);
+
+        CompositeShape nextCompositeShape = new CompositeShape();
+        compositeShape.addShape(embedImage);
+        nextCompositeShape.addShape(rectangle);
+        nextCompositeShape.addShape(circle);
+        compositeShape.addShape(nextCompositeShape);
 
         double area = compositeShape.area();
         System.out.println("Computed area of the composite shape is :" + area);
@@ -40,7 +49,8 @@ public class FileIOTest {
 
         CompositeShape readCompositeShape = null;
         readCompositeShape = file.readShape(filename);
-        System.out.println("Read Object : \n" + readCompositeShape.toString());
+        System.out.println("\nRead Object from file: \n" + readCompositeShape.toString());
+        System.out.println("\nExpected Object from file: \n" + compositeShape.toString());
         assert readCompositeShape.toString().equals(compositeShape.toString());
     }
 }

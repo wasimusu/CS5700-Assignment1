@@ -2,20 +2,25 @@ package examples.shapes;
 
 import org.junit.Test;
 
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+
 import static org.junit.Assert.*;
 
 public class LineTest {
 
     @Test
     public void testValidConstruction() throws ShapeException {
-        Point p1 = new Point(1,2);
+        Point p1 = new Point(1, 2);
         Point p2 = new Point(4, 10);
 
         Line myLine = new Line(p1, p2);
         assertSame(p1, myLine.getPoint1());
         assertSame(p2, myLine.getPoint2());
 
-        p1 = new Point(1.4,2.5);
+        p1 = new Point(1.4, 2.5);
         p2 = new Point(4.6, 10.7);
         myLine = new Line(p1, p2);
         assertSame(p1, myLine.getPoint1());
@@ -30,7 +35,7 @@ public class LineTest {
 
     @Test
     public void testInvalidConstruction() throws Exception {
-        Point p1 = new Point(1,2);
+        Point p1 = new Point(1, 2);
         Point p2 = new Point(4, 10);
 
         try {
@@ -83,7 +88,7 @@ public class LineTest {
         }
 
         try {
-            new Line(1,2, 1,2);
+            new Line(1, 2, 1, 2);
             fail("Expected exception not thrown");
         } catch (Exception e) {
             assertEquals("A line must have a length > 0", e.getMessage());
@@ -143,5 +148,36 @@ public class LineTest {
         myLine = new Line(2, 4, 2, 2);
         assertEquals(Double.NEGATIVE_INFINITY, myLine.computeSlope(), 0.1);
     }
+
+    @Test
+    public void render() throws Exception {
+        // Test by manual inspection
+        String outputFilename = "line.png";
+
+        // Construct the bufferedImage of one of the predefined image types
+        BufferedImage bufferedImage = new BufferedImage(400, 400, BufferedImage.TYPE_INT_RGB);
+
+        // create a graphics which can be used to draw into buffered image
+        Graphics2D graphics = bufferedImage.createGraphics();
+        graphics.setColor(Color.white);
+
+        // Generate set of lines and render them
+        for (int i = 1; i <= 10; i++) {
+            Point p1 = new Point(0, i*40);
+            Point p2 = new Point(400, i*40);
+            Point p3 = new Point(i*40, 0);
+            Point p4 = new Point(i*40, 400);
+
+            Line line1 = new Line(p1, p2);
+            Line line2 = new Line(p3, p4);
+            line1.render(graphics);
+            line2.render(graphics);
+        }
+        // Save as PNG and release resource
+        File file = new File(outputFilename);
+        ImageIO.write(bufferedImage, "png", file);
+        graphics.dispose();
+    }
+
 
 }

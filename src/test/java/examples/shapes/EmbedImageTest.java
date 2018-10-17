@@ -41,10 +41,11 @@ public class EmbedImageTest {
 
     @Test
     public void stringConstructorTest() throws Exception {
+        // If strings of two objects are identical the objects are identical
         String filename = "image.png";
         EmbedImage embedImage = new EmbedImage(filename, 10, 10, 40, 40);
         EmbedImage newEmbedImage = new EmbedImage(embedImage.toString());
-        assert newEmbedImage.equals(embedImage);
+        assert newEmbedImage.toString().equals(embedImage.toString());
     }
 
     @Test

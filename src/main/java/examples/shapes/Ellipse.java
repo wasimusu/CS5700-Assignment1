@@ -126,7 +126,7 @@ public class Ellipse implements Shapes {
         this.minorRadius = Double.valueOf(strings[3]);
         this.center = new Point(x, y);
         System.out.println(majorRadius + ": " + this.majorRadius + " : ");
-        System.out.println("Created a new ellipse with area : "+this.area());
+//        System.out.println("Created a new ellipse with area : "+this.area());
     }
 
     public void render(Graphics2D graphics) {
