@@ -204,7 +204,11 @@ public class CompositeShapeTest {
         Ellipse ellipse = new Ellipse(100, 100, 50, 40);
         Circle circle = new Circle(200, 200, 40);
 
+        String imageFilename = "image.jpg";
+        EmbedImage embedImage = new EmbedImage(imageFilename, 200, 200, 400, 400);
+
         CompositeShape compositeShape = new CompositeShape();
+        compositeShape.addShape(embedImage);
         compositeShape.addShape(triangle);
         compositeShape.addShape(rectangle);
         compositeShape.addShape(square);
@@ -217,7 +221,7 @@ public class CompositeShapeTest {
         System.out.println("Computed area of the composite shape is :" + area);
 
         // Construct the bufferedImage of one of the predefined image types
-        BufferedImage bufferedImage = new BufferedImage(400, 400, BufferedImage.TYPE_INT_RGB);
+        BufferedImage bufferedImage = new BufferedImage(800, 800, BufferedImage.TYPE_INT_RGB);
 
         // create a graphics which can be used to draw into buffered image
         Graphics2D graphics = bufferedImage.createGraphics();
@@ -226,8 +230,8 @@ public class CompositeShapeTest {
         compositeShape.render(graphics);
 
         // Save as PNG
-        File file = new File("image.png");
-        ImageIO.write(bufferedImage, "png", file);
+        File file = new File("composite.jpg");
+        ImageIO.write(bufferedImage, "jpg", file);
         graphics.dispose();
     }
 

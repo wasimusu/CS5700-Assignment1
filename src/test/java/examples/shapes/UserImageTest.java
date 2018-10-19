@@ -19,6 +19,6 @@ public class UserImageTest {
         Graphics2D graphics = bufferedImage.createGraphics();
         graphics.setColor(Color.white);
 
-        userImage.render(graphics, 0, 0);
+        userImage.render(graphics, 0, 0, 100, 200);
     }
 }

@@ -35,7 +35,7 @@ public class EmbedImage implements Shapes{
     }
 
     public void render(Graphics2D graphics) {
-        this.userImage.render(graphics, this.startPoint.getX(), this.startPoint.getY());
+        this.userImage.render(graphics, this.startPoint.getX(), this.startPoint.getY(), this.height, this.width);
     }
 
     public Point getStartPoint(){

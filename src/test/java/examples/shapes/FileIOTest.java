@@ -23,8 +23,9 @@ public class FileIOTest {
         Ellipse ellipse = new Ellipse(10, 10, 50, 40);
         Circle circle = new Circle(20, 20, 40);
 
-        String imageFilename = "image.png";
-        EmbedImage embedImage = new EmbedImage(imageFilename, 10, 10, 40, 40);
+        String imageFilename = "image.jpg";
+        String compositeFilename = "composite.jpg";
+        EmbedImage embedImage = new EmbedImage(imageFilename, 10, 10, 200, 200);
 
         CompositeShape compositeShape = new CompositeShape();
         compositeShape.addShape(triangle);

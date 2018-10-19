@@ -15,8 +15,8 @@ public class UserImage {
         this.bufferedImage = ImageIO.read(file);
     }
 
-    public void render(Graphics2D graphics, double x, double y){
+    public void render(Graphics2D graphics, double x, double y, int height, int width){
         // render image
-        graphics.drawImage(this.bufferedImage, 0, 0, null);
+        graphics.drawImage(this.bufferedImage, (int)x, (int)y, height, width, null, null);
     }
 }
